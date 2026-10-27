@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0f1f">
+<meta property="og:title" content="Наш первый год">
+<meta property="og:description" content="03.11.2025: театр, огни Алматы и цветы.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9D%A4%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+html,body{margin:0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Наш первый год</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Manrope:wght@400;500;600&family=Bad+Script&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a night over Almaty. Sky + mountains + city lights open the page, a theatre ticket
+   for the first evening, a live "together" counter, the evening told in three acts, a letter, flowers. */
+:root {
+  --night: #0d0f1f;
+  --night-2: #151830;
+  --velvet: #7a2233;
+  --gold: #d8b36a;
+  --rose: #eaa3ac;
+  --ink: #f1e8da;
+  --muted: #a7a2b8;
+  --line: rgba(216, 179, 106, 0.28);
+  --ridge-1: #1b1f3d;
+  --ridge-2: #141731;
+  --ridge-3: #0f1226;
+  --paper: #f3eadb;
+  --paper-ink: #2a1d22;
+  --display: "Oranienbaum", "Playfair Display", Georgia, serif;
+  --body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --hand: "Bad Script", "Segoe Script", cursive;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--night);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; }
+#sky { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero-inner { position: relative; padding-block: 72px 260px; }
+.hero h1 { font-size: clamp(56px, 13vw, 116px); line-height: 0.92; letter-spacing: -0.01em; margin-top: 18px; }
+.hero h1 em { font-style: normal; color: var(--rose); }
+.lede { max-width: 30ch; font-size: 18px; color: var(--ink); opacity: 0.88; margin: 22px 0 0; }
+
+/* Ticket */
+.ticket-wrap { position: relative; margin-top: -170px; z-index: 2; }
+.ticket {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  background: var(--paper);
+  color: var(--paper-ink);
+  border-radius: 6px;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7);
+  transform: rotate(-1.2deg);
+  transition: transform .4s ease;
+}
+.ticket:hover { transform: rotate(0deg); }
+.ticket-main { padding: 26px 28px; min-width: 0; border-right: 2px dashed rgba(42,29,34,0.3); position: relative; }
+.ticket-main::before, .ticket-main::after {
+  content: ""; position: absolute; right: -11px; width: 20px; height: 20px; border-radius: 50%; background: var(--night);
+}
+.ticket-main::before { top: -10px; }
+.ticket-main::after { bottom: -10px; }
+.ticket .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--velvet); }
+.ticket h2 { font-size: clamp(26px, 5vw, 36px); line-height: 1.05; margin-top: 8px; color: var(--paper-ink); }
+.ticket dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 18px; margin: 22px 0 0; }
+.ticket dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(42,29,34,0.55); }
+.ticket dd { margin: 2px 0 0; font-weight: 600; font-size: 15px; }
+.stub {
+  padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 16px;
+  font-family: var(--mono); text-align: center;
+}
+.stub .no { font-size: 13px; letter-spacing: 0.1em; color: var(--velvet); }
+.stub .seal {
+  width: 74px; height: 74px; border-radius: 50%; border: 2px solid var(--velvet); color: var(--velvet);
+  display: grid; place-items: center; font-family: var(--display); font-size: 30px; transform: rotate(-12deg);
+}
+.stub .valid { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(42,29,34,0.6); line-height: 1.4; }
+
+/* Counter */
+.section { padding-block: 96px 0; }
+.counter .days { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-top: 12px; }
+.counter .num {
+  font-family: var(--display); font-size: clamp(96px, 24vw, 184px); line-height: 0.85; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.counter .unit { font-family: var(--display); font-size: clamp(28px, 6vw, 44px); color: var(--rose); }
+.clock { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+.clock div {
+  border: 1px solid var(--line); border-radius: 4px; padding: 10px 16px; min-width: 92px;
+}
+.clock b { display: block; font-family: var(--mono); font-weight: 500; font-size: 26px; font-variant-numeric: tabular-nums; color: var(--ink); }
+.clock span { font-size: 12px; color: var(--muted); }
+.until { margin: 26px 0 0; font-size: 18px; }
+.until strong { color: var(--gold); font-weight: 600; }
+
+/* Acts */
+.acts { display: grid; gap: 0; margin-top: 30px; }
+.act {
+  display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 22px;
+  padding-block: 30px; border-top: 1px solid var(--line);
+}
+.act:last-child { border-bottom: 1px solid var(--line); }
+.act .roman { font-family: var(--display); font-size: 58px; line-height: 1; color: var(--gold); }
+.act svg { width: 34px; height: 34px; margin-top: 10px; stroke: var(--rose); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.act h3 { font-size: 32px; line-height: 1.1; }
+.act p { margin: 10px 0 0; color: var(--ink); opacity: 0.86; max-width: 52ch; }
+.section-title { font-size: clamp(40px, 8vw, 64px); line-height: 1; margin-top: 12px; }
+
+/* Letter */
+.letter {
+  margin-top: 30px; background: var(--paper); color: var(--paper-ink); border-radius: 4px;
+  padding: clamp(26px, 6vw, 52px); position: relative;
+  box-shadow: 0 30px 60px -24px rgba(0,0,0,0.7);
+}
+.letter::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; border-radius: 4px 4px 0 0;
+  background: var(--velvet);
+}
+.letter .hello { font-family: var(--hand); font-size: 30px; color: var(--velvet); margin: 0 0 14px; }
+.letter p { margin: 0 0 14px; font-size: 17px; max-width: 58ch; }
+.letter .sign { font-family: var(--hand); font-size: 28px; color: var(--velvet); margin: 22px 0 0; text-align: right; }
+
+/* Finale */
+.finale { text-align: left; padding-block: 96px 110px; }
+.finale h2 { font-size: clamp(38px, 8vw, 62px); line-height: 1.02; }
+.finale h2 em { font-style: normal; color: var(--rose); }
+.btn {
+  margin-top: 28px; display: inline-flex; align-items: center; gap: 10px;
+  background: var(--velvet); color: var(--ink); border: 1px solid var(--gold);
+  font: 600 16px var(--body); padding: 14px 24px; border-radius: 999px; cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+.btn:hover { transform: translateY(-2px); background: #8c2a3d; }
+.btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.btn svg { width: 20px; height: 20px; stroke: var(--rose); fill: none; stroke-width: 1.6; }
+.foot { margin-top: 26px; color: var(--muted); font-size: 14px; }
+
+#petals { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 20; }
+
+@media (max-width: 560px) {
+  .hero-inner { padding-block: 52px 220px; }
+  .ticket { grid-template-columns: 1fr; transform: rotate(-0.8deg); }
+  .ticket-main { border-right: 0; border-bottom: 2px dashed rgba(42,29,34,0.3); }
+  .ticket-main::before, .ticket-main::after { right: auto; top: auto; bottom: -11px; }
+  .ticket-main::before { left: -10px; }
+  .ticket-main::after { right: -10px; }
+  .ticket dl { grid-template-columns: 1fr 1fr; }
+  .stub { flex-direction: row; padding: 18px 22px; text-align: left; }
+  .stub .seal { width: 56px; height: 56px; font-size: 22px; }
+  .act { grid-template-columns: 1fr; gap: 6px; }
+  .act .head { display: flex; align-items: center; gap: 14px; }
+  .act svg { margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticket, .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">03.11.2025 → 03.11.2026</p>
+    <h1>Наш первый <em>год</em></h1>
+    <p class="lede">Театр, огни Алматы с высоты и букет цветов. Так начались мы.</p>
+  </div>
+</header>
+
+<div class="wrap ticket-wrap">
+  <div class="ticket">
+    <div class="ticket-main">
+      <div class="label">Билет на двоих</div>
+      <h2>Вечер, с которого всё началось</h2>
+      <dl>
+        <div><dt>Дата</dt><dd>3 ноября 2025</dd></div>
+        <div><dt>Город</dt><dd>Алматы</dd></div>
+        <div><dt>Место</dt><dd>Рядом с тобой</dd></div>
+      </dl>
+    </div>
+    <div class="stub">
+      <div class="no">№ 0001</div>
+      <div class="seal">♥</div>
+      <div class="valid">Действителен<br>навсегда</div>
+    </div>
+  </div>
+</div>
+
+<section class="wrap section counter" aria-live="off">
+  <p class="eyebrow">Мы вместе уже</p>
+  <div class="days"><span class="num" id="days">0</span><span class="unit" id="daysUnit">дней</span></div>
+  <div class="clock">
+    <div><b id="hh">00</b><span>часов</span></div>
+    <div><b id="mm">00</b><span>минут</span></div>
+    <div><b id="ss">00</b><span>секунд</span></div>
+  </div>
+  <p class="until" id="until"></p>
+</section>
+
+<section class="wrap section">
+  <p class="eyebrow">Программа вечера</p>
+  <h2 class="section-title">3 ноября в трёх действиях</h2>
+  <div class="acts">
+    <article class="act">
+      <div class="head">
+        <div class="roman">I</div>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 6c4 2 9 2 13 0v9c0 5-3 9-6.5 9S5 20 5 15z"/><path d="M8.5 12h2M13 12h2M9 18c1.5 1.5 3.5 1.5 5 0"/><path d="M19 10c3 1 6 1 8-.5v8c0 4.5-2.5 8-5.5 8-1.4 0-2.6-.7-3.5-1.9"/><path d="M21.5 15h1.5M25 15h1M22 21c1-1 2.5-1 3.5 0"/></svg>
+      </div>
+      <div>
+        <h3>Театр</h3>
+        <p>Два билета, гаснет свет, поднимается занавес. Я, честно, смотрел больше на тебя, чем на сцену.</p>
+      </div>
+    </article>
+    <article class="act">
+      <div class="head">
+        <div class="roman">II</div>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 26 11 11l5 7 4-5 10 13z"/><path d="m11 11 2 3.5M20 13l1.5 2"/><path d="M6 29h2M12 29h1M17 29h2M23 29h1"/></svg>
+      </div>
+      <div>
+        <h3>Вершина Алматы</h3>
+        <p>Потом мы поднялись наверх. Весь город светился под нами, но самым красивым видом всё равно была ты.</p>
+      </div>
+    </article>
+    <article class="act">
+      <div class="head">
+        <div class="roman">III</div>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="10" r="3"/><path d="M16 7c0-3 4-4 4-1M13 10c-3 0-4-4-1-4M19 10c3 0 4 4 1 4M16 13c0 3-4 4-4 1"/><path d="M16 13v16M16 22c-3-1-6-3-6-6M16 25c3-1 5-3 5-5"/></svg>
+      </div>
+      <div>
+        <h3>Цветы</h3>
+        <p>И букет для тебя. Маленький жест, с которого начался целый год вместе.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="wrap section">
+  <p class="eyebrow">Письмо</p>
+  <h2 class="section-title">Тебе</h2>
+  <div class="letter">
+    <p class="hello">Моя любимая,</p>
+    <p>Год назад я купил два билета в театр и очень волновался. Потом мы стояли на вершине, город горел огнями, а я думал только о том, как хорошо, что ты рядом.</p>
+    <p>Спасибо тебе за этот год. За смех, за поддержку, за терпение и за то, что ты со мной и в хорошие, и в трудные дни. Ты лучшее, что со мной случилось.</p>
+    <p>Я хочу ещё много таких вечеров. И театров, и гор, и цветов. Но больше всего хочу тебя рядом.</p>
+    <p class="sign">С годовщиной. Твой Аслан</p>
+  </div>
+</section>
+
+<section class="wrap finale">
+  <h2>Год назад я подарил тебе цветы. <em>Держи ещё.</em></h2>
+  <button class="btn" id="flowers" type="button">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="2.5"/><path d="M12 5.5c0-2.5 3.5-3 3.5-.8M9.5 8C7 8 6.5 4.5 8.7 4.5M14.5 8c2.5 0 3 3.5.8 3.5M12 10.5V21M12 16c-2.5-.8-4.5-2.5-4.5-5"/></svg>
+    Подарить цветы
+  </button>
+  <p class="foot">03.11.2025 · Алматы · навсегда</p>
+</section>
+
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var css = getComputedStyle(document.documentElement);
+  function tok(n) { return css.getPropertyValue(n).trim(); }
+
+  function rng(seed) {
+    return function () {
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  /* ---------- Sky: stars, the Alatau ridges, city lights ---------- */
+  var sky = document.getElementById('sky');
+  var sctx = sky.getContext('2d');
+  var W = 0, H = 0, stars = [], lights = [], ridges = [];
+
+  function ridgeY(x, base, amp, seed) {
+    return base
+      - amp * (0.55 * Math.sin(x * 0.0042 + seed) + 0.3 * Math.abs(Math.sin(x * 0.011 + seed * 2.1))
+      + 0.18 * Math.sin(x * 0.027 + seed * 3.7));
+  }
+
+  function buildSky() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = sky.getBoundingClientRect();
+    W = r.width; H = r.height;
+    sky.width = Math.round(W * dpr); sky.height = Math.round(H * dpr);
+    sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var rand = rng(311);
+    stars = [];
+    var n = Math.round(W * H / 2600);
+    for (var i = 0; i < n; i++) {
+      stars.push({ x: rand() * W, y: rand() * H * 0.62, r: rand() * 1.1 + 0.2, p: rand() * 6.28, s: 0.6 + rand() * 1.6 });
+    }
+    var cityTop = H * 0.74;
+    ridges = [
+      { base: H * 0.60, amp: H * 0.16, seed: 1.3, color: tok('--ridge-1') },
+      { base: H * 0.67, amp: H * 0.11, seed: 4.2, color: tok('--ridge-2') },
+      { base: H * 0.74, amp: H * 0.06, seed: 7.9, color: tok('--ridge-3') }
+    ];
+    lights = [];
+    var palette = ['#ffd59a', '#ffbe78', '#fff0d2', '#eaa3ac', '#ffe2a8'];
+    var m = Math.round(W * 1.1);
+    for (var j = 0; j < m; j++) {
+      var y = cityTop + Math.pow(rand(), 0.7) * (H - cityTop);
+      var x = rand() * W;
+      if (y < ridgeY(x, ridges[2].base, ridges[2].amp, ridges[2].seed) + 4) continue;
+      lights.push({ x: x, y: y, r: 0.5 + rand() * 1.3 * ((y - cityTop) / (H - cityTop) + 0.4),
+        c: palette[(rand() * palette.length) | 0], p: rand() * 6.28, s: 0.5 + rand() * 2 });
+    }
+  }
+
+  function drawSky(t) {
+    var g = sctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#0a0c1a');
+    g.addColorStop(0.55, tok('--night-2'));
+    g.addColorStop(1, '#1d1530');
+    sctx.fillStyle = g; sctx.fillRect(0, 0, W, H);
+
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var a = reduce ? 0.7 : 0.45 + 0.55 * Math.abs(Math.sin(t * 0.0006 * s.s + s.p));
+      sctx.globalAlpha = a; sctx.fillStyle = '#f1e8da';
+      sctx.beginPath(); sctx.arc(s.x, s.y, s.r, 0, 6.283); sctx.fill();
+    }
+    sctx.globalAlpha = 1;
+
+    for (var k = 0; k < ridges.length; k++) {
+      var rd = ridges[k];
+      sctx.fillStyle = rd.color;
+      sctx.beginPath(); sctx.moveTo(0, H);
+      for (var x = 0; x <= W + 8; x += 8) sctx.lineTo(x, ridgeY(x, rd.base, rd.amp, rd.seed));
+      sctx.lineTo(W, H); sctx.closePath(); sctx.fill();
+      if (k === 0) {
+        sctx.strokeStyle = 'rgba(241,232,218,0.18)'; sctx.lineWidth = 1;
+        sctx.beginPath();
+        for (var x2 = 0; x2 <= W + 8; x2 += 8) {
+          var yy = ridgeY(x2, rd.base, rd.amp, rd.seed);
+          if (x2 === 0) sctx.moveTo(x2, yy); else sctx.lineTo(x2, yy);
+        }
+        sctx.stroke();
+      }
+    }
+
+    var haze = sctx.createLinearGradient(0, H * 0.72, 0, H);
+    haze.addColorStop(0, 'rgba(255,170,100,0)');
+    haze.addColorStop(1, 'rgba(255,170,100,0.16)');
+    sctx.fillStyle = haze; sctx.fillRect(0, H * 0.72, W, H * 0.28);
+
+    for (var j = 0; j < lights.length; j++) {
+      var l = lights[j];
+      sctx.globalAlpha = reduce ? 0.85 : 0.55 + 0.45 * Math.abs(Math.sin(t * 0.0012 * l.s + l.p));
+      sctx.fillStyle = l.c;
+      sctx.beginPath(); sctx.arc(l.x, l.y, l.r, 0, 6.283); sctx.fill();
+    }
+    sctx.globalAlpha = 1;
+
+    var fade = sctx.createLinearGradient(0, H * 0.86, 0, H);
+    fade.addColorStop(0, 'rgba(13,15,31,0)');
+    fade.addColorStop(1, tok('--night'));
+    sctx.fillStyle = fade; sctx.fillRect(0, H * 0.86, W, H * 0.14);
+  }
+
+  var skyVisible = true;
+  function skyLoop(t) {
+    if (skyVisible) drawSky(t);
+    if (!reduce) requestAnimationFrame(skyLoop);
+  }
+  buildSky(); drawSky(0);
+  if (!reduce) requestAnimationFrame(skyLoop);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { skyVisible = e[0].isIntersecting; }).observe(sky);
+  }
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { buildSky(); drawSky(performance.now()); }, 120);
+  });
+
+  /* ---------- Counter ---------- */
+  var start = new Date(2025, 10, 3, 0, 0, 0);
+  var anniv = new Date(2026, 10, 3, 0, 0, 0);
+  function plural(n, one, few, many) {
+    var a = Math.abs(n) % 100, b = a % 10;
+    if (a > 10 && a < 20) return many;
+    if (b > 1 && b < 5) return few;
+    if (b === 1) return one;
+    return many;
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  var elD = document.getElementById('days'), elU = document.getElementById('daysUnit'),
+      elH = document.getElementById('hh'), elM = document.getElementById('mm'), elS = document.getElementById('ss'),
+      elUntil = document.getElementById('until');
+  function tick() {
+    var now = new Date();
+    var diff = Math.max(0, now - start);
+    var days = Math.floor(diff / 864e5);
+    var rem = diff - days * 864e5;
+    elD.textContent = days;
+    elU.textContent = plural(days, 'день', 'дня', 'дней');
+    elH.textContent = pad(Math.floor(rem / 36e5));
+    elM.textContent = pad(Math.floor(rem % 36e5 / 6e4));
+    elS.textContent = pad(Math.floor(rem % 6e4 / 1e3));
+
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var left = Math.round((anniv - today) / 864e5);
+    if (left > 0) {
+      elUntil.innerHTML = 'До нашей первой годовщины <strong>' + left + ' ' + plural(left, 'день', 'дня', 'дней') + '</strong>.';
+    } else if (left === 0) {
+      elUntil.innerHTML = '<strong>Сегодня ровно год.</strong> С годовщиной, любимая!';
+    } else {
+      var after = -left;
+      elUntil.innerHTML = 'Первый год позади, и уже <strong>' + after + ' ' + plural(after, 'день', 'дня', 'дней') + '</strong> второго.';
+    }
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- Flowers ---------- */
+  var pc = document.getElementById('petals');
+  var pctx = pc.getContext('2d');
+  var petals = [], running = false, PW = 0, PH = 0;
+  var hues = ['#eaa3ac', '#f2b8be', '#d9707f', '#f7d1d4', '#c94f63', '#d8b36a'];
+  function sizePetals() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    PW = window.innerWidth; PH = window.innerHeight;
+    pc.width = Math.round(PW * dpr); pc.height = Math.round(PH * dpr);
+    pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  sizePetals();
+  window.addEventListener('resize', sizePetals);
+
+  function spawn(n) {
+    for (var i = 0; i < n; i++) {
+      petals.push({
+        x: Math.random() * PW, y: -20 - Math.random() * PH * 0.6,
+        vx: (Math.random() - 0.5) * 0.6, vy: 0.8 + Math.random() * 1.4,
+        r: 6 + Math.random() * 9, a: Math.random() * 6.28, va: (Math.random() - 0.5) * 0.06,
+        sw: Math.random() * 6.28, c: hues[(Math.random() * hues.length) | 0]
+      });
+    }
+    if (!running) { running = true; requestAnimationFrame(step); }
+  }
+  function drawPetal(p) {
+    pctx.save();
+    pctx.translate(p.x, p.y); pctx.rotate(p.a);
+    pctx.scale(1, 0.55 + 0.45 * Math.abs(Math.sin(p.sw)));
+    pctx.fillStyle = p.c;
+    pctx.beginPath();
+    pctx.moveTo(0, -p.r);
+    pctx.bezierCurveTo(p.r * 0.9, -p.r * 0.6, p.r * 0.7, p.r * 0.7, 0, p.r);
+    pctx.bezierCurveTo(-p.r * 0.7, p.r * 0.7, -p.r * 0.9, -p.r * 0.6, 0, -p.r);
+    pctx.fill();
+    pctx.restore();
+  }
+  function step() {
+    pctx.clearRect(0, 0, PW, PH);
+    for (var i = petals.length - 1; i >= 0; i--) {
+      var p = petals[i];
+      p.sw += 0.03; p.x += p.vx + Math.sin(p.sw) * 0.6; p.y += p.vy; p.a += p.va;
+      if (p.y > PH + 30) { petals.splice(i, 1); continue; }
+      drawPetal(p);
+    }
+    if (petals.length) requestAnimationFrame(step);
+    else { running = false; pctx.clearRect(0, 0, PW, PH); }
+  }
+  document.getElementById('flowers').addEventListener('click', function () {
+    spawn(reduce ? 24 : 90);
+  });
+  if (!reduce) setTimeout(function () { spawn(26); }, 900);
+})();
+</script>
+
+</body>
+</html>
