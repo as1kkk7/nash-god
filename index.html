@@ -1,509 +1,1860 @@
 <!doctype html>
-<html lang="ru">
+<html lang="kk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d0f1f">
-<meta property="og:title" content="Наш первый год">
-<meta property="og:description" content="03.11.2025: театр, огни Алматы и цветы.">
+<meta property="og:title" content="Тек саған арналған спектакль">
+<meta property="og:description" content="03.11.2025 → 03.11.2026">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9D%A4%EF%B8%8F%3C/text%3E%3C/svg%3E">
-<style>
-html,body{margin:0}
-:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-img{max-width:100%}
-[hidden]{display:none!important}
-</style>
-<title>Наш первый год</title>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} img{max-width:100%}</style>
+<title>Тек саған арналған спектакль</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Manrope:wght@400;500;600&family=Bad+Script&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Nunito:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: a night over Almaty. Sky + mountains + city lights open the page, a theatre ticket
-   for the first evening, a live "together" counter, the evening told in three acts, a letter, flowers. */
+/* Layout: a one-night theatre. Curtain → a question only she can answer → the Almaty night sky,
+   where stars hold memories and join into a heart → reasons, letter, coupons → Act IV invitation. */
 :root {
   --night: #0d0f1f;
   --night-2: #151830;
   --velvet: #7a2233;
+  --velvet-deep: #4a0f1c;
   --gold: #d8b36a;
   --rose: #eaa3ac;
   --ink: #f1e8da;
   --muted: #a7a2b8;
   --line: rgba(216, 179, 106, 0.28);
-  --ridge-1: #1b1f3d;
-  --ridge-2: #141731;
-  --ridge-3: #0f1226;
   --paper: #f3eadb;
   --paper-ink: #2a1d22;
-  --display: "Oranienbaum", "Playfair Display", Georgia, serif;
-  --body: "Manrope", "Segoe UI", system-ui, sans-serif;
-  --hand: "Bad Script", "Segoe Script", cursive;
+  --display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --hand: "Caveat", "Segoe Script", cursive;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
-body {
-  background: var(--night);
-  color: var(--ink);
-  font-family: var(--body);
-  font-size: 16px;
-  line-height: 1.65;
-  overflow-x: hidden;
-}
-.wrap {
-  max-width: 760px;
-  margin: 0 auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-.eyebrow {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin: 0;
-}
-h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
-
-/* Hero */
-.hero { position: relative; overflow: hidden; }
-#sky { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.hero-inner { position: relative; padding-block: 72px 260px; }
-.hero h1 { font-size: clamp(56px, 13vw, 116px); line-height: 0.92; letter-spacing: -0.01em; margin-top: 18px; }
-.hero h1 em { font-style: normal; color: var(--rose); }
-.lede { max-width: 30ch; font-size: 18px; color: var(--ink); opacity: 0.88; margin: 22px 0 0; }
-
-/* Ticket */
-.ticket-wrap { position: relative; margin-top: -170px; z-index: 2; }
-.ticket {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  background: var(--paper);
-  color: var(--paper-ink);
-  border-radius: 6px;
-  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7);
-  transform: rotate(-1.2deg);
-  transition: transform .4s ease;
-}
-.ticket:hover { transform: rotate(0deg); }
-.ticket-main { padding: 26px 28px; min-width: 0; border-right: 2px dashed rgba(42,29,34,0.3); position: relative; }
-.ticket-main::before, .ticket-main::after {
-  content: ""; position: absolute; right: -11px; width: 20px; height: 20px; border-radius: 50%; background: var(--night);
-}
-.ticket-main::before { top: -10px; }
-.ticket-main::after { bottom: -10px; }
-.ticket .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--velvet); }
-.ticket h2 { font-size: clamp(26px, 5vw, 36px); line-height: 1.05; margin-top: 8px; color: var(--paper-ink); }
-.ticket dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 18px; margin: 22px 0 0; }
-.ticket dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(42,29,34,0.55); }
-.ticket dd { margin: 2px 0 0; font-weight: 600; font-size: 15px; }
-.stub {
-  padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 16px;
-  font-family: var(--mono); text-align: center;
-}
-.stub .no { font-size: 13px; letter-spacing: 0.1em; color: var(--velvet); }
-.stub .seal {
-  width: 74px; height: 74px; border-radius: 50%; border: 2px solid var(--velvet); color: var(--velvet);
-  display: grid; place-items: center; font-family: var(--display); font-size: 30px; transform: rotate(-12deg);
-}
-.stub .valid { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(42,29,34,0.6); line-height: 1.4; }
-
-/* Counter */
-.section { padding-block: 96px 0; }
-.counter .days { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-top: 12px; }
-.counter .num {
-  font-family: var(--display); font-size: clamp(96px, 24vw, 184px); line-height: 0.85; color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-.counter .unit { font-family: var(--display); font-size: clamp(28px, 6vw, 44px); color: var(--rose); }
-.clock { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
-.clock div {
-  border: 1px solid var(--line); border-radius: 4px; padding: 10px 16px; min-width: 92px;
-}
-.clock b { display: block; font-family: var(--mono); font-weight: 500; font-size: 26px; font-variant-numeric: tabular-nums; color: var(--ink); }
-.clock span { font-size: 12px; color: var(--muted); }
-.until { margin: 26px 0 0; font-size: 18px; }
-.until strong { color: var(--gold); font-weight: 600; }
-
-/* Acts */
-.acts { display: grid; gap: 0; margin-top: 30px; }
-.act {
-  display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 22px;
-  padding-block: 30px; border-top: 1px solid var(--line);
-}
-.act:last-child { border-bottom: 1px solid var(--line); }
-.act .roman { font-family: var(--display); font-size: 58px; line-height: 1; color: var(--gold); }
-.act svg { width: 34px; height: 34px; margin-top: 10px; stroke: var(--rose); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.act h3 { font-size: 32px; line-height: 1.1; }
-.act p { margin: 10px 0 0; color: var(--ink); opacity: 0.86; max-width: 52ch; }
-.section-title { font-size: clamp(40px, 8vw, 64px); line-height: 1; margin-top: 12px; }
-
-/* Letter */
-.letter {
-  margin-top: 30px; background: var(--paper); color: var(--paper-ink); border-radius: 4px;
-  padding: clamp(26px, 6vw, 52px); position: relative;
-  box-shadow: 0 30px 60px -24px rgba(0,0,0,0.7);
-}
-.letter::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; border-radius: 4px 4px 0 0;
-  background: var(--velvet);
-}
-.letter .hello { font-family: var(--hand); font-size: 30px; color: var(--velvet); margin: 0 0 14px; }
-.letter p { margin: 0 0 14px; font-size: 17px; max-width: 58ch; }
-.letter .sign { font-family: var(--hand); font-size: 28px; color: var(--velvet); margin: 22px 0 0; text-align: right; }
-
-/* Finale */
-.finale { text-align: left; padding-block: 96px 110px; }
-.finale h2 { font-size: clamp(38px, 8vw, 62px); line-height: 1.02; }
-.finale h2 em { font-style: normal; color: var(--rose); }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { background: var(--night); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.65; overflow-x: hidden; }
+body.locked { overflow: hidden; height: 100%; }
+.wrap { max-width: 780px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; text-wrap: balance; margin: 0; }
+button { font: inherit; }
 .btn {
-  margin-top: 28px; display: inline-flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   background: var(--velvet); color: var(--ink); border: 1px solid var(--gold);
-  font: 600 16px var(--body); padding: 14px 24px; border-radius: 999px; cursor: pointer;
+  font-weight: 600; font-size: 16px; padding: 14px 26px; border-radius: 999px; cursor: pointer;
   transition: transform .2s ease, background .2s ease;
 }
 .btn:hover { transform: translateY(-2px); background: #8c2a3d; }
-.btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
-.btn svg { width: 20px; height: 20px; stroke: var(--rose); fill: none; stroke-width: 1.6; }
-.foot { margin-top: 26px; color: var(--muted); font-size: 14px; }
+.btn:focus-visible, .ghost:focus-visible, .star:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.ghost { background: none; border: 1px solid var(--line); color: var(--ink); padding: 12px 22px; border-radius: 999px; cursor: pointer; font-weight: 500; }
+.demo-note {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted);
+  border: 1px dashed var(--line); border-radius: 4px; padding: 3px 8px; display: inline-block;
+}
 
-#petals { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 20; }
+/* ---------- Gate: curtain + secret question ---------- */
+#gate { position: fixed; inset: 0; z-index: 50; background: radial-gradient(ellipse at 50% 40%, #1d1a35, var(--night) 70%); transition: opacity .9s ease, visibility .9s; }
+#gate.gone { opacity: 0; visibility: hidden; }
+.curtain {
+  position: absolute; top: 0; bottom: 0; width: 51%; z-index: 3;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0) 30%, rgba(0,0,0,0.35)),
+    repeating-linear-gradient(90deg, var(--velvet-deep) 0px, var(--velvet) 22px, #8e2a3d 34px, var(--velvet) 46px, var(--velvet-deep) 70px);
+  transition: transform 2.2s cubic-bezier(.7,0,.25,1);
+  box-shadow: 0 0 60px rgba(0,0,0,0.6);
+}
+.curtain.l { left: 0; transform-origin: left; }
+.curtain.r { right: 0; transform-origin: right; }
+#gate.open .curtain.l { transform: translateX(-100%) scaleX(0.6); }
+#gate.open .curtain.r { transform: translateX(100%) scaleX(0.6); }
+.valance {
+  position: absolute; left: 0; right: 0; top: 0; height: 64px; z-index: 4;
+  background: linear-gradient(180deg, #3d0c17, var(--velvet));
+  border-bottom: 3px solid var(--gold);
+}
+.valance::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -15px; height: 14px;
+  background: radial-gradient(circle at 10px 0, var(--gold) 5px, transparent 6px) 0 0 / 20px 14px repeat-x;
+}
+.plaque {
+  position: absolute; z-index: 5; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: min(88vw, 420px); text-align: center; padding: 30px 24px 28px;
+  background: rgba(13,15,31,0.82); border: 1px solid var(--gold); border-radius: 6px;
+  transition: opacity .6s ease;
+  display: grid; gap: 14px; justify-items: center;
+}
+#gate.open .plaque { opacity: 0; pointer-events: none; }
+.plaque h1 { font-size: clamp(34px, 8vw, 46px); line-height: 1.02; }
+.plaque p { margin: 0; color: var(--muted); }
+
+.lock {
+  position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: min(90vw, 440px); text-align: center; display: grid; gap: 16px; justify-items: center;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.lock .keyhole { width: 54px; height: 54px; border-radius: 50%; border: 1.5px solid var(--gold); display: grid; place-items: center; }
+.lock .keyhole svg { width: 22px; height: 22px; fill: var(--gold); }
+.lock { max-height: calc(100% - 90px); overflow-y: auto; top: calc(50% + 32px); }
+.qdots { display: flex; gap: 8px; justify-content: center; }
+.qdots i { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--gold); transition: background .4s, transform .4s; }
+.qdots i.on { background: var(--gold); transform: scale(1.15); }
+.qdots i.cur { box-shadow: 0 0 0 3px rgba(216,179,106,.25); }
+#qText.swap { animation: qswap .55s ease; }
+@keyframes qswap { from { opacity: 0; transform: translateY(10px); filter: blur(3px); } }
+.choices { display: grid; gap: 8px; width: 100%; }
+.choices button { background: rgba(241,232,218,.06); border: 1px solid var(--line); color: var(--ink); border-radius: 12px; padding: 13px 16px;
+  font: 600 15px var(--body); cursor: pointer; transition: background .2s, opacity .3s; }
+.choices button:hover { background: rgba(241,232,218,.12); }
+.choices button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.choices button.no { opacity: .4; text-decoration: line-through; cursor: default; }
+.choices button.yes { background: var(--gold); color: var(--night); border-color: var(--gold); }
+.lock h2 { font-size: clamp(30px, 7vw, 40px); line-height: 1.08; }
+.lock form { display: flex; gap: 8px; width: 100%; flex-wrap: wrap; justify-content: center; }
+.lock input {
+  flex: 1 1 200px; min-width: 0; background: rgba(241,232,218,0.06); border: 1px solid var(--line); color: var(--ink);
+  border-radius: 999px; padding: 13px 20px; font: 500 16px var(--body);
+}
+.lock .msg { min-height: 1.6em; margin: 0; color: var(--rose); font-size: 15px; }
+.shake { animation: shake .45s; }
+@keyframes shake { 20%,60% { transform: translateX(-8px); } 40%,80% { transform: translateX(8px); } }
+
+/* ---------- Hero sky + constellation ---------- */
+.hero { position: relative; overflow: hidden; }
+#sky { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero-inner { position: relative; padding-block: 64px 230px; }
+.hero h1 { font-size: clamp(54px, 12vw, 110px); line-height: 0.92; margin-top: 16px; }
+.hero h1 em { font-style: normal; color: var(--rose); }
+.lede { max-width: 34ch; font-size: 18px; opacity: .88; margin: 18px 0 0; }
+.constellation-wrap { margin-top: 34px; }
+.hint { font-size: 15px; color: var(--muted); margin: 0; }
+.hint b { color: var(--gold); font-weight: 600; font-variant-numeric: tabular-nums; }
+.constellation { position: relative; width: min(100%, 440px); aspect-ratio: 1 / 0.92; margin: 10px auto 0; max-width: 100%; }
+.constellation svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.constellation polyline {
+  fill: none; stroke: var(--gold); stroke-width: 0.55; stroke-linejoin: round;
+  stroke-dasharray: var(--len, 2000); stroke-dashoffset: var(--len, 2000);
+  filter: drop-shadow(0 0 6px rgba(216,179,106,0.8));
+  transition: stroke-dashoffset 3s ease;
+}
+.constellation.done polyline { stroke-dashoffset: 0; }
+.star {
+  position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border: 0; border-radius: 50%;
+  background: transparent; cursor: pointer; display: grid; place-items: center;
+}
+.star i {
+  width: 12px; height: 12px; border-radius: 50%; background: #fff6e2;
+  box-shadow: 0 0 10px 3px rgba(255,236,190,0.9), 0 0 26px 8px rgba(216,179,106,0.45);
+  animation: pulse 2.4s ease-in-out infinite; animation-delay: var(--d, 0s);
+}
+.star.seen i { background: var(--rose); box-shadow: 0 0 10px 3px rgba(234,163,172,0.9), 0 0 24px 6px rgba(234,163,172,0.4); animation: none; }
+@keyframes pulse { 50% { transform: scale(1.45); } }
+.heart-msg { text-align: center; font-family: var(--hand); font-size: 26px; color: var(--rose); min-height: 1.4em; margin: 8px 0 0; opacity: 0; transition: opacity 1.2s ease 2.4s; }
+.constellation-wrap.done .heart-msg { opacity: 1; }
+
+/* ---------- Memory modal ---------- */
+#modal { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; background: rgba(5,6,14,0.78); padding: 20px max(16px, env(safe-area-inset-right, 0px)) 20px max(16px, env(safe-area-inset-left, 0px)); }
+.polaroid {
+  width: min(92vw, 360px); background: var(--paper); color: var(--paper-ink); padding: 14px 14px 18px; border-radius: 3px;
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8); transform: rotate(-2deg); animation: drop .5s cubic-bezier(.2,1.4,.4,1);
+  position: relative;
+}
+@keyframes drop { from { transform: translateY(-40px) rotate(-8deg); opacity: 0; } }
+.photo-ph {
+  aspect-ratio: 1; border-radius: 2px; display: grid; place-items: center; text-align: center; padding: 20px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: rgba(255,255,255,0.85);
+}
+.polaroid .when { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--velvet); margin: 14px 0 2px; }
+.polaroid .cap { font-family: var(--hand); font-size: 24px; line-height: 1.3; margin: 0; }
+.polaroid .close {
+  position: absolute; top: -14px; right: -14px; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--velvet); color: var(--ink); border: 1px solid var(--gold); cursor: pointer; font-size: 20px; line-height: 1;
+}
+
+/* ---------- Sections ---------- */
+.section { padding-block: 96px 0; }
+.section-title { font-size: clamp(40px, 8vw, 62px); line-height: 1; margin-top: 12px; }
+.counter .days { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-top: 12px; }
+.counter .num { font-family: var(--display); font-size: clamp(96px, 24vw, 180px); line-height: .85; font-variant-numeric: tabular-nums; }
+.counter .unit { font-family: var(--display); font-size: clamp(28px, 6vw, 44px); color: var(--rose); }
+.clock { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+.clock div { border: 1px solid var(--line); border-radius: 4px; padding: 10px 16px; min-width: 92px; }
+.clock b { display: block; font-family: var(--mono); font-weight: 500; font-size: 26px; font-variant-numeric: tabular-nums; }
+.clock span { font-size: 12px; color: var(--muted); }
+.until { margin: 24px 0 0; font-size: 18px; }
+.until strong { color: var(--gold); font-weight: 600; }
+
+/* Reasons */
+.reason-card {
+  margin-top: 28px; border: 1px solid var(--line); border-radius: 6px; padding: clamp(24px, 6vw, 44px);
+  background: linear-gradient(160deg, rgba(122,34,51,0.28), rgba(21,24,48,0.6));
+  display: grid; gap: 22px;
+}
+.reason-card .count { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--gold); text-transform: uppercase; }
+.reason { font-family: var(--display); font-size: clamp(28px, 6vw, 40px); line-height: 1.15; margin: 0; min-height: 2.3em; transition: opacity .35s ease, transform .35s ease; }
+.reason.fade { opacity: 0; transform: translateY(8px); }
+
+/* Letter */
+.letter { margin-top: 28px; background: var(--paper); color: var(--paper-ink); border-radius: 4px; padding: clamp(26px, 6vw, 50px); position: relative; box-shadow: 0 30px 60px -24px rgba(0,0,0,0.7); }
+.letter::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; border-radius: 4px 4px 0 0; background: var(--velvet); }
+.letter .hello { font-family: var(--hand); font-size: 36px; color: var(--velvet); margin: 0 0 14px; }
+.letter p { margin: 0 0 14px; font-size: 17px; max-width: 58ch; }
+.letter .sign { font-family: var(--hand); font-size: 34px; color: var(--velvet); margin: 22px 0 0; text-align: right; }
+.voice { display: flex; align-items: center; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
+
+/* Coupons */
+.coupons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+.coupon {
+  position: relative; background: var(--paper); color: var(--paper-ink); border-radius: 6px; padding: 20px 20px 18px;
+  display: grid; gap: 8px; align-content: start; overflow: hidden;
+}
+.coupon::before, .coupon::after { content: ""; position: absolute; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--night); }
+.coupon::before { left: -9px; } .coupon::after { right: -9px; }
+.coupon .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--velvet); }
+.coupon h3 { font-size: 24px; line-height: 1.1; color: var(--paper-ink); }
+.coupon button { justify-self: start; margin-top: 6px; background: var(--paper-ink); color: var(--paper); border: 0; border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 14px; cursor: pointer; }
+.coupon .stamp {
+  position: absolute; right: 12px; bottom: 16px; transform: rotate(-14deg) scale(1.6); opacity: 0;
+  border: 2.5px solid var(--velvet); color: var(--velvet); font-family: var(--mono); font-weight: 500; font-size: 13px;
+  letter-spacing: .12em; padding: 4px 10px; border-radius: 4px; transition: transform .35s cubic-bezier(.3,1.6,.5,1), opacity .2s;
+}
+.coupon.used .stamp { opacity: .9; transform: rotate(-14deg) scale(1); }
+.coupon.used button { visibility: hidden; }
+.coupon.used h3 { opacity: .55; }
+
+/* Finale */
+.finale { padding-block: 110px 130px; }
+.invite {
+  margin-top: 28px; display: grid; grid-template-columns: 1fr auto; background: var(--paper); color: var(--paper-ink);
+  border-radius: 6px; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7);
+}
+.invite-main { padding: 28px; min-width: 0; border-right: 2px dashed rgba(42,29,34,0.3); }
+.invite .label { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--velvet); }
+.invite h2 { font-size: clamp(30px, 6vw, 44px); line-height: 1.04; margin-top: 8px; color: var(--paper-ink); }
+.invite p { margin: 12px 0 0; max-width: 44ch; }
+.invite-stub { padding: 28px 24px; display: grid; place-items: center; gap: 6px; text-align: center; font-family: var(--mono); }
+.invite-stub .big { font-family: var(--display); font-size: 54px; line-height: 1; color: var(--velvet); }
+.invite-stub .sm { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(42,29,34,0.6); }
+.answer { position: relative; margin-top: 30px; min-height: 120px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+#maybe { position: relative; transition: transform .25s ease; }
+.yes-msg { font-family: var(--hand); font-size: clamp(28px, 6vw, 38px); color: var(--rose); margin: 0; }
+.foot { margin-top: 40px; color: var(--muted); font-size: 14px; }
+
+/* Music */
+#music {
+  position: fixed; z-index: 30; right: max(16px, calc(env(safe-area-inset-right, 0px) + 16px)); bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+  width: 58px; height: 58px; border-radius: 50%; border: 1px solid var(--gold); cursor: pointer; padding: 0;
+  background: radial-gradient(circle, var(--rose) 0 7px, #111 8px 10px, #1c1c1c 11px 13px, #111 14px 17px, #1c1c1c 18px 21px, #111 22px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+#music.on { animation: spin 2.4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#musicTip { position: fixed; z-index: 30; right: max(84px, calc(env(safe-area-inset-right, 0px) + 84px)); bottom: calc(env(safe-area-inset-bottom, 0px) + 32px); font-size: 13px; color: var(--muted); background: rgba(13,15,31,0.85); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); }
+
+#fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 60; }
+
+/* Titles */
+.titles { position: absolute; inset: 0; z-index: 6; display: grid; place-items: center; text-align: center;
+  padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+.t-line { font-family: var(--display); font-size: clamp(30px, 7vw, 54px); line-height: 1.15; max-width: 17ch; margin: 0;
+  opacity: 0; transform: translateY(12px); filter: blur(4px); transition: opacity 1s ease, transform 1.4s ease, filter 1s ease; text-wrap: balance; }
+.t-line.show { opacity: 1; transform: none; filter: none; }
+.t-line.small { font-family: var(--mono); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); max-width: none; }
+.t-line.big { color: var(--rose); font-size: clamp(44px, 11vw, 80px); }
+.skip { position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 28px); transform: translateX(-50%); font-size: 14px; color: var(--muted); }
+.lock { transition: opacity .6s ease; }
+.lock.out { opacity: 0; pointer-events: none; }
+
+/* Envelope */
+.sub { margin: 10px 0 0; color: var(--muted); max-width: 52ch; }
+.envelope-wrap { margin-top: 28px; display: grid; justify-items: center; gap: 6px; text-align: center; transition: opacity .8s ease, transform .8s ease; }
+.envelope-wrap.gone { opacity: 0; transform: translateY(40px); }
+.envelope { position: relative; width: min(100%, 520px); aspect-ratio: 1.55; background: #e9dcc6; border-radius: 6px; box-shadow: 0 30px 60px -24px rgba(0,0,0,.7); perspective: 900px; }
+.envelope::before { content: ""; position: absolute; inset: 0; border-radius: 6px; background: #dccbaf; clip-path: polygon(0 100%, 50% 50%, 100% 100%); }
+.flap { position: absolute; left: 0; right: 0; top: 0; height: 60%; background: #d6c3a3; clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top; transition: transform 1s ease; z-index: 2; border-radius: 6px 6px 0 0; }
+.envelope.opened .flap { transform: rotateX(180deg); }
+.envelope .to { position: absolute; left: 0; right: 0; bottom: 9%; font-family: var(--hand); font-size: clamp(20px, 5vw, 28px); color: var(--velvet); z-index: 1; }
+.seal { position: absolute; left: 50%; top: 60%; width: 80px; height: 80px; margin: -40px 0 0 -40px; border-radius: 50%; border: 0; cursor: pointer; z-index: 3;
+  background: radial-gradient(circle at 35% 30%, #b8435a, #7a2233 55%, #4a0f1c); color: #f0c9a0; font-family: var(--display); font-size: 36px;
+  box-shadow: 0 6px 14px rgba(0,0,0,.45), inset 0 -3px 6px rgba(0,0,0,.35), inset 0 0 0 6px rgba(74,15,28,.35);
+  display: grid; place-items: center; transition: transform .4s ease, opacity .4s ease; animation: sealPulse 2.2s ease-in-out infinite; }
+.seal:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@keyframes sealPulse { 50% { transform: scale(1.07); } }
+.envelope.opened .seal { opacity: 0; transform: scale(1.5); animation: none; pointer-events: none; }
+.letter.rise { animation: rise 1.1s cubic-bezier(.2,.9,.3,1); }
+.letter.rise p { animation: fadeIn 1s ease both; }
+.letter.rise p:nth-child(2) { animation-delay: .5s; } .letter.rise p:nth-child(3) { animation-delay: 1s; } .letter.rise p:nth-child(4) { animation-delay: 1.5s; }
+@keyframes rise { from { opacity: 0; transform: translateY(70px) scale(.95); } }
+@keyframes fadeIn { from { opacity: 0; } }
+
+/* Bouquet */
+.bouquet-box { margin-top: 20px; height: 460px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 90%, rgba(122,34,51,.4), transparent 62%), var(--night-2); }
+#bouquet { width: 100%; height: 100%; display: block; cursor: pointer; touch-action: manipulation; }
+
+/* ---------- Our book ---------- */
+.auth-bar { margin-top: 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.auth-bar .who { color: var(--ink); }
+.tabs { display: flex; gap: 6px; margin-top: 26px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button {
+  flex: 0 0 auto; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 999px;
+  padding: 9px 16px; cursor: pointer; font-weight: 600; font-size: 14px; transition: background .2s, color .2s;
+}
+.tabs button[aria-selected="true"] { background: var(--gold); color: var(--night); border-color: var(--gold); }
+.tabs button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.tab-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-top: 20px; flex-wrap: wrap; }
+.tab-desc { margin: 0; color: var(--muted); flex: 1 1 260px; min-width: 0; }
+.btn.small { padding: 10px 18px; font-size: 14px; }
+.book-list { margin-top: 22px; display: grid; gap: 14px; }
+.empty { border: 1px dashed var(--line); border-radius: 6px; padding: 30px 22px; text-align: center; color: var(--muted); }
+.empty b { display: block; font-family: var(--display); font-weight: 400; font-size: 26px; color: var(--ink); margin-bottom: 6px; }
+
+.year-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-top: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.year-head:first-child { margin-top: 0; }
+.year-head h3 { font-size: 34px; color: var(--gold); }
+.year-head span { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; color: var(--muted); }
+
+.entry { background: var(--paper); color: var(--paper-ink); border-radius: 6px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); }
+.entry.has-photo { grid-template-columns: 180px minmax(0, 1fr); }
+.entry img { width: 100%; height: 100%; min-height: 160px; object-fit: cover; display: block; }
+.entry .body { padding: 18px 20px; min-width: 0; display: grid; gap: 4px; align-content: start; }
+.entry .meta { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--velvet); }
+.entry h4 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 25px; line-height: 1.15; }
+.entry p { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.entry .foot-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; font-size: 13px; color: rgba(42,29,34,.6); }
+.del { background: none; border: 0; color: rgba(42,29,34,.55); cursor: pointer; font-size: 13px; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; }
+.del.confirm { color: var(--velvet); font-weight: 600; }
+
+.timeline { position: relative; display: grid; gap: 14px; padding-left: 26px; }
+.timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--line); }
+.timeline .entry { position: relative; overflow: visible; }
+.timeline .entry::before { content: ""; position: absolute; left: -25px; top: 22px; width: 13px; height: 13px; border-radius: 50%; background: var(--night); border: 2px solid var(--rose); }
+.timeline .entry img { border-radius: 6px 0 0 6px; }
+
+.dream-stats { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--gold); text-transform: uppercase; }
+.dreams { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.dream { position: relative; border: 1px solid var(--line); border-radius: 6px; padding: 16px 16px 14px 54px; background: rgba(241,232,218,.03); min-width: 0; overflow: hidden; }
+.dream .check {
+  position: absolute; left: 14px; top: 15px; width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--gold);
+  background: none; cursor: pointer; display: grid; place-items: center; color: var(--night); font-weight: 700; padding: 0;
+}
+.dream.done .check { background: var(--gold); }
+.dream h4 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 22px; line-height: 1.2; overflow-wrap: anywhere; }
+.dream p { margin: 4px 0 0; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+.dream .done-stamp { display: inline-block; margin-top: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--rose); border: 1.5px solid var(--rose); border-radius: 3px; padding: 2px 8px; transform: rotate(-3deg); }
+.dream.done h4 { color: var(--ink); }
+.dream .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px; }
+.dream .del { color: var(--muted); }
+
+.capsules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.capsule { border-radius: 6px; padding: 20px; min-width: 0; display: grid; gap: 6px; align-content: start; }
+.capsule.locked { background: linear-gradient(160deg, var(--velvet), var(--velvet-deep)); border: 1px solid rgba(216,179,106,.4); }
+.capsule.open { background: var(--paper); color: var(--paper-ink); }
+.capsule .lock-ico { width: 30px; height: 30px; fill: none; stroke: var(--gold); stroke-width: 1.6; }
+.capsule .meta { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+.capsule.open .meta { color: var(--velvet); }
+.capsule h4 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 24px; line-height: 1.15; overflow-wrap: anywhere; }
+.capsule .left { font-size: 14px; color: var(--rose); }
+.capsule .text { font-family: var(--hand); font-size: 20px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; margin: 6px 0 0; }
+.capsule .foot-row { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--muted); margin-top: 8px; }
+.capsule.open .foot-row, .capsule.open .del { color: rgba(42,29,34,.6); }
+.capsule.locked .del { color: var(--muted); }
+
+#sheet { position: fixed; inset: 0; z-index: 45; background: rgba(5,6,14,.78); display: grid; align-items: end; justify-items: center; }
+.sheet-card {
+  width: min(100%, 560px); max-height: 92vh; overflow-y: auto; background: var(--night-2); border: 1px solid var(--line); border-bottom: 0;
+  border-radius: 16px 16px 0 0; padding: 26px max(20px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 22px) max(20px, env(safe-area-inset-left, 0px));
+  animation: sheetUp .35s cubic-bezier(.2,.9,.3,1);
+}
+@keyframes sheetUp { from { transform: translateY(40px); opacity: 0; } }
+.sheet-card h3 { font-size: 30px; }
+.fields { display: grid; gap: 14px; margin-top: 18px; }
+.field { display: grid; gap: 6px; }
+.field label { font-size: 13px; color: var(--muted); font-weight: 600; }
+.field input[type=text], .field input[type=date], .field textarea {
+  width: 100%; background: rgba(241,232,218,.06); border: 1px solid var(--line); color: var(--ink); border-radius: 8px;
+  padding: 12px 14px; font: 500 16px var(--body); color-scheme: dark;
+}
+.field textarea { min-height: 110px; resize: vertical; }
+.field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.photo-pick { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.photo-pick label.pick { cursor: pointer; border: 1px dashed var(--gold); color: var(--gold); border-radius: 8px; padding: 10px 14px; font-size: 14px; font-weight: 600; }
+.photo-pick input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.photo-pick img { width: 64px; height: 64px; object-fit: cover; border-radius: 6px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chips button { background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+.form-err { min-height: 1.4em; margin: 10px 0 0; color: var(--rose); font-size: 14px; }
+.sheet-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 6px; }
 
 @media (max-width: 560px) {
-  .hero-inner { padding-block: 52px 220px; }
-  .ticket { grid-template-columns: 1fr; transform: rotate(-0.8deg); }
-  .ticket-main { border-right: 0; border-bottom: 2px dashed rgba(42,29,34,0.3); }
-  .ticket-main::before, .ticket-main::after { right: auto; top: auto; bottom: -11px; }
-  .ticket-main::before { left: -10px; }
-  .ticket-main::after { right: -10px; }
-  .ticket dl { grid-template-columns: 1fr 1fr; }
-  .stub { flex-direction: row; padding: 18px 22px; text-align: left; }
-  .stub .seal { width: 56px; height: 56px; font-size: 22px; }
-  .act { grid-template-columns: 1fr; gap: 6px; }
-  .act .head { display: flex; align-items: center; gap: 14px; }
-  .act svg { margin-top: 0; }
+  .entry.has-photo { grid-template-columns: minmax(0, 1fr); }
+  .entry img { height: 220px; min-height: 0; }
+  .timeline .entry img { border-radius: 6px 6px 0 0; }
+  .dreams, .capsules { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .coupons { grid-template-columns: 1fr; }
+  .invite { grid-template-columns: 1fr; }
+  .invite-main { border-right: 0; border-bottom: 2px dashed rgba(42,29,34,0.3); }
+  .invite-stub { grid-auto-flow: column; justify-content: space-between; align-items: center; padding: 18px 24px; }
+  .hero-inner { padding-block: 48px 200px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ticket, .btn { transition: none; }
+  .curtain { transition: opacity .6s; }
+  #gate.open .curtain { transform: none; opacity: 0; }
+  .star i, #music.on { animation: none; }
+  .constellation polyline { transition: none; }
 }
+
+
+/* ---------- countdown ---------- */
+.countdown { position: absolute; inset: 0; z-index: 7; display: grid; place-content: center; justify-items: center; gap: 14px; text-align: center;
+  background: radial-gradient(ellipse at 50% 45%, rgba(13,15,31,.72), rgba(13,15,31,.94) 70%);
+  padding: 80px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+.countdown h1 { font-size: clamp(38px, 10vw, 60px); line-height: 1.02; }
+.cd-sub { margin: 0; color: var(--muted); max-width: 30ch; }
+.cd-digits { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+.cd-box { min-width: 78px; padding: 12px 10px 8px; border: 1px solid var(--line); border-radius: 10px; background: rgba(21,24,48,.8); }
+.cd-box b { display: block; font-family: var(--mono); font-weight: 500; font-size: clamp(34px, 10vw, 52px); line-height: 1; font-variant-numeric: tabular-nums; color: var(--ink); }
+.cd-box span { font-size: 12px; color: var(--muted); }
+.countdown.final .cd-box b { color: var(--rose); animation: cdBeat 1s ease-in-out infinite; }
+@keyframes cdBeat { 50% { transform: scale(1.12); } }
+.countdown.done .cd-box { border-color: var(--gold); }
+.countdown.done .cd-box b { color: var(--gold); }
+.countdown.done h1 { color: var(--rose); }
+.cd-note { margin: 8px 0 0; font-size: 14px; color: var(--muted); max-width: 32ch; }
+.demo-skip { background: none; border: 0; color: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 6px 0; }
+
+/* ---------- day plan ---------- */
+#plan { position: fixed; inset: 0; z-index: 55; overflow-y: auto; background: radial-gradient(ellipse at 50% 0%, #241a3a, var(--night) 60%); }
+.plan-wrap { max-width: 640px; margin: 0 auto; display: grid; gap: 16px;
+  padding: calc(env(safe-area-inset-top, 0px) + 48px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 48px) max(16px, env(safe-area-inset-left, 0px)); }
+.plan-wrap h2 { font-size: clamp(40px, 10vw, 60px); line-height: 1; }
+.plan-sub { margin: 0; color: var(--muted); max-width: 46ch; }
+.plan-foot { margin-top: 8px; }
+.plan-note { margin: 0; font-family: var(--hand); font-size: 24px; color: var(--rose); }
+.plan-open { margin: 0; font-family: var(--hand); font-size: 28px; color: var(--gold); }
+.dacts { display: grid; gap: 12px; margin-top: 8px; }
+#ourDay .dacts { margin-top: 24px; }
+.dact { border: 1px dashed var(--line); border-radius: 10px; padding: 18px; background: rgba(13,15,31,.55); display: grid; gap: 10px; min-width: 0; }
+.dact.cur { border: 1px solid var(--gold); background: rgba(122,34,51,.28); }
+.dact.done { border: 1px solid var(--gold); background: var(--paper); color: var(--paper-ink); }
+.dact-top { display: flex; align-items: center; gap: 14px; }
+.dact-rn { font-family: var(--display); font-size: 36px; line-height: 1; color: var(--gold); min-width: 40px; }
+.dact.done .dact-rn { color: var(--velvet); }
+.dact-tt { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex: 1; min-width: 0; flex-wrap: wrap; }
+.dact h4 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.1; }
+.dact-pill { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; border-radius: 999px; padding: 3px 10px; border: 1px solid var(--line); color: var(--muted); }
+.dact.cur .dact-pill { border-color: var(--rose); color: var(--rose); }
+.dact.done .dact-pill { border-color: var(--velvet); color: var(--velvet); }
+.dact-det { margin: 0; }
+.dact-need { margin: 0; font-family: var(--hand); font-size: 19px; line-height: 1.4; color: var(--rose); }
+.dact-wait { margin: 0; font-size: 14px; color: var(--muted); }
+.dact-img { width: 100%; max-height: 340px; object-fit: cover; border-radius: 6px; display: block; }
+.pick-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.pick-row input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.pick-btn { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; background: var(--velvet); color: var(--ink); border: 1px solid var(--gold);
+  border-radius: 999px; padding: 11px 20px; font-weight: 600; font-size: 15px; }
+.pick-row input:focus-visible + .no-photo, .pick-btn:focus-within { outline: 2px solid var(--gold); outline-offset: 3px; }
+.no-photo { background: none; border: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-size: 14px; padding: 4px 0; }
+.pick-err { flex-basis: 100%; margin: 0; color: var(--rose); font-size: 14px; }
+.pick-err:empty { display: none; }
+
+/* ---------- replay ---------- */
+.replay-box { padding-block: 0 110px; }
+.replay-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+.reset-confirm { margin-top: 18px; border: 1px solid var(--rose); border-radius: 10px; padding: 18px; background: rgba(122,34,51,.25); }
+.reset-confirm p { margin: 0; }
+.reset-confirm .replay-actions { margin-top: 14px; }
+.coupon.wide { grid-column: 1 / -1; background: linear-gradient(120deg, var(--paper), #f7dfe2); }
+.finale { padding-block: 110px 70px; }
+
+/* photos behind the opening titles */
+.titles { background: var(--night); overflow: hidden; }
+.t-photos { position: absolute; inset: 0; overflow: hidden; }
+.t-photo { position: absolute; inset: -5%; background-size: cover; background-position: center; opacity: 0; transform: scale(1.03); transition: opacity 1.6s ease, transform 9s linear; }
+.t-photo.on { opacity: 1; transform: scale(1.14); }
+.t-photo.ph::after { content: attr(data-n); position: absolute; left: 50%; top: 20%; transform: translateX(-50%); font-family: var(--mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: rgba(241,232,218,.4); }
+.t-shade { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(13,15,31,.35), rgba(13,15,31,.8)); }
+.t-line { position: relative; z-index: 3; text-shadow: 0 2px 20px rgba(0,0,0,.6); }
+.titles .skip { z-index: 3; }
 </style>
 </head>
 <body>
 
+<!-- ========== GATE ========== -->
+<div id="gate">
+  <div class="lock" id="lock">
+    <div class="keyhole"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="4"/><path d="M10 12h4l1.5 9h-7z"/></svg></div>
+    <p class="eyebrow" id="qStep">Сұрақ 1 / 8</p>
+    <div class="qdots" id="qDots" aria-hidden="true"></div>
+    <h2 id="qText">Екеуміздің махаббат өміріне алғаш қадам жасаған күніміз қай күн?</h2>
+    <form id="lockForm" autocomplete="off">
+      <input id="answer" type="text" placeholder="Жауабың" aria-label="Сұраққа жауап">
+      <button class="btn" type="submit">Жауап</button>
+    </form>
+    <div class="choices" id="choices" hidden></div>
+    <p class="msg" id="lockMsg"></p>
+    <span class="demo-note">В примере: 03.11.2025 · Медеу · Есіміңіз кім болады? · кино · Қайтадан · театр · Махаббат қызық мол жылдар · любой</span>
+  </div>
+  <div class="titles" id="titles" hidden>
+    <div class="t-photos" id="tPhotos" aria-hidden="true"></div>
+    <div class="t-shade" aria-hidden="true"></div>
+    <p class="t-line" id="tLine"></p>
+    <button class="ghost skip" id="skip" type="button">Өткізіп жіберу</button>
+  </div>
+  <div class="curtain l"></div>
+  <div class="curtain r"></div>
+  <div class="valance"></div>
+  <div class="plaque" id="plaque">
+    <p class="eyebrow">03.11.2025 · Премьера</p>
+    <h1>Тек саған арналған спектакль</h1>
+    <p>Дыбысты қосып, жайғасып ал</p>
+    <button class="btn" id="startBtn" type="button">Шымылдықты аш</button>
+  </div>
+  <div class="countdown" id="countdown" hidden>
+    <p class="eyebrow">Тағы аздап қалды</p>
+    <h1 id="cdTitle">Жаным, сәл күте тұршы</h1>
+    <p class="cd-sub" id="cdSub">Дәл түнгі сағат 12-де ашылады</p>
+    <div class="cd-digits" role="timer" aria-live="off">
+      <div class="cd-box" id="cdDaysBox" hidden><b id="cdD">0</b><span>күн</span></div>
+      <div class="cd-box"><b id="cdH">00</b><span>сағат</span></div>
+      <div class="cd-box"><b id="cdM">00</b><span>минут</span></div>
+      <div class="cd-box"><b id="cdS">00</b><span>секунд</span></div>
+    </div>
+    <p class="cd-note">Бетті жаппа. Сағат 12 болғанда осы жерде батырма шығады</p>
+    <button class="demo-skip" id="cdSkip" type="button">Пропустить ожидание (только в примере)</button>
+  </div>
+</div>
+
+<!-- ========== DAY PLAN LAYER ========== -->
+<div id="plan" hidden role="dialog" aria-modal="true" aria-labelledby="planTitle">
+  <div class="plan-wrap">
+    <p class="eyebrow">3 қараша · Бүгін не істейміз</p>
+    <h2 id="planTitle">Бүгінгі жоспарымыз</h2>
+    <p class="plan-sub">Бүкіл жоспар осында. Әр жерде бір сурет қосып қой. Сайттың қалғанын кешкі тамақта ашасың.</p>
+    <div class="dacts" id="planActs"></div>
+    <div class="plan-foot" id="planFoot"></div>
+    <button class="demo-skip" id="planReset" type="button">Начать сначала (только в примере)</button>
+  </div>
+</div>
+
+<!-- ========== HERO ========== -->
 <header class="hero">
   <canvas id="sky" aria-hidden="true"></canvas>
   <div class="wrap hero-inner">
     <p class="eyebrow">03.11.2025 → 03.11.2026</p>
-    <h1>Наш первый <em>год</em></h1>
-    <p class="lede">Театр, огни Алматы с высоты и букет цветов. Так начались мы.</p>
+    <h1>Бірге өткен <em>бір жыл</em></h1>
+    <p class="lede">Кино, Медеу, театр, түнгі Алматы, гүлдер… Әр жұлдызды басып көрші, ішінде біздің бір сәтіміз бар.</p>
+    <div class="constellation-wrap" id="cwrap">
+      <p class="hint">Жұлдыздарды бас. Ашылды: <b id="seenCount">0</b> / <b id="totalCount">8</b></p>
+      <div class="constellation" id="constellation">
+        <svg viewBox="0 0 100 92" preserveAspectRatio="none" aria-hidden="true"><polyline id="heartLine" points=""/></svg>
+      </div>
+      <p class="heart-msg">Жапырағым, жапалағым менің…<br>бұл жүрек — сенікі ♥</p>
+    </div>
   </div>
 </header>
 
-<div class="wrap ticket-wrap">
-  <div class="ticket">
-    <div class="ticket-main">
-      <div class="label">Билет на двоих</div>
-      <h2>Вечер, с которого всё началось</h2>
-      <dl>
-        <div><dt>Дата</dt><dd>3 ноября 2025</dd></div>
-        <div><dt>Город</dt><dd>Алматы</dd></div>
-        <div><dt>Место</dt><dd>Рядом с тобой</dd></div>
-      </dl>
-    </div>
-    <div class="stub">
-      <div class="no">№ 0001</div>
-      <div class="seal">♥</div>
-      <div class="valid">Действителен<br>навсегда</div>
-    </div>
-  </div>
-</div>
-
-<section class="wrap section counter" aria-live="off">
-  <p class="eyebrow">Мы вместе уже</p>
-  <div class="days"><span class="num" id="days">0</span><span class="unit" id="daysUnit">дней</span></div>
+<!-- ========== COUNTER ========== -->
+<section class="wrap section counter">
+  <p class="eyebrow">Бірге болғанымызға</p>
+  <div class="days"><span class="num" id="days">0</span><span class="unit" id="daysUnit">күн</span></div>
   <div class="clock">
-    <div><b id="hh">00</b><span>часов</span></div>
+    <div><b id="hh">00</b><span>сағат</span></div>
     <div><b id="mm">00</b><span>минут</span></div>
     <div><b id="ss">00</b><span>секунд</span></div>
   </div>
   <p class="until" id="until"></p>
 </section>
 
+<!-- ========== OUR DAY ========== -->
+<section class="wrap section" id="ourDay">
+  <p class="eyebrow">3 қараша 2026</p>
+  <h2 class="section-title">Біздің күн</h2>
+  <p class="sub">Квест, тамақ, кино. Сол күнгі суреттеріміз осында тұрады.</p>
+  <div class="dacts" id="dayActs"></div>
+</section>
+
+<!-- ========== REASONS ========== -->
 <section class="wrap section">
-  <p class="eyebrow">Программа вечера</p>
-  <h2 class="section-title">3 ноября в трёх действиях</h2>
-  <div class="acts">
-    <article class="act">
-      <div class="head">
-        <div class="roman">I</div>
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 6c4 2 9 2 13 0v9c0 5-3 9-6.5 9S5 20 5 15z"/><path d="M8.5 12h2M13 12h2M9 18c1.5 1.5 3.5 1.5 5 0"/><path d="M19 10c3 1 6 1 8-.5v8c0 4.5-2.5 8-5.5 8-1.4 0-2.6-.7-3.5-1.9"/><path d="M21.5 15h1.5M25 15h1M22 21c1-1 2.5-1 3.5 0"/></svg>
-      </div>
-      <div>
-        <h3>Театр</h3>
-        <p>Два билета, гаснет свет, поднимается занавес. Я, честно, смотрел больше на тебя, чем на сцену.</p>
-      </div>
-    </article>
-    <article class="act">
-      <div class="head">
-        <div class="roman">II</div>
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 26 11 11l5 7 4-5 10 13z"/><path d="m11 11 2 3.5M20 13l1.5 2"/><path d="M6 29h2M12 29h1M17 29h2M23 29h1"/></svg>
-      </div>
-      <div>
-        <h3>Вершина Алматы</h3>
-        <p>Потом мы поднялись наверх. Весь город светился под нами, но самым красивым видом всё равно была ты.</p>
-      </div>
-    </article>
-    <article class="act">
-      <div class="head">
-        <div class="roman">III</div>
-        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="10" r="3"/><path d="M16 7c0-3 4-4 4-1M13 10c-3 0-4-4-1-4M19 10c3 0 4 4 1 4M16 13c0 3-4 4-4 1"/><path d="M16 13v16M16 22c-3-1-6-3-6-6M16 25c3-1 5-3 5-5"/></svg>
-      </div>
-      <div>
-        <h3>Цветы</h3>
-        <p>И букет для тебя. Маленький жест, с которого начался целый год вместе.</p>
-      </div>
-    </article>
+  <p class="eyebrow">Неге сен</p>
+  <h2 class="section-title">Сені неге жақсы көремін</h2>
+  <div class="reason-card">
+    <div class="count" id="reasonCount">1-себеп / 12</div>
+    <p class="reason" id="reason">Сенімен жай кеш те мереке болып кетеді.</p>
+    <div><button class="btn" id="nextReason" type="button">Тағы біреу</button></div>
   </div>
 </section>
 
+<!-- ========== LETTER ========== -->
 <section class="wrap section">
-  <p class="eyebrow">Письмо</p>
-  <h2 class="section-title">Тебе</h2>
-  <div class="letter">
-    <p class="hello">Моя любимая,</p>
-    <p>Год назад я купил два билета в театр и очень волновался. Потом мы стояли на вершине, город горел огнями, а я думал только о том, как хорошо, что ты рядом.</p>
-    <p>Спасибо тебе за этот год. За смех, за поддержку, за терпение и за то, что ты со мной и в хорошие, и в трудные дни. Ты лучшее, что со мной случилось.</p>
-    <p>Я хочу ещё много таких вечеров. И театров, и гор, и цветов. Но больше всего хочу тебя рядом.</p>
-    <p class="sign">С годовщиной. Твой Аслан</p>
+  <p class="eyebrow">Хат</p>
+  <h2 class="section-title">Саған</h2>
+  <div class="envelope-wrap" id="envWrap">
+    <div class="envelope" id="envelope">
+      <div class="flap"></div>
+      <div class="to">Саған. Ашып көрші</div>
+      <button class="seal" id="seal" type="button" aria-label="Хатты ашу">А</button>
+    </div>
+    <p class="sub">Мөрді басшы</p>
+  </div>
+  <div class="letter" id="letter" hidden>
+    <p class="hello">Жүрегім менің,</p>
+    <p>Бір жыл бұрын театрға екі билет алдым, қатты толқыдым. Сосын биікте тұрдық, қала жарқырап тұрды, ал мен сенің қасымда екеніңе қуанып тұрдым.</p>
+    <p>Осы бір жыл үшін рахмет саған. Күлкің үшін, қолдағаның үшін, шыдағаның үшін. Жақсы күнде де, қиын күнде де қасымда болғаның үшін.</p>
+    <p class="sign">Сенің Асланың</p>
+  </div>
+  <div class="voice">
+    <button class="ghost" type="button" disabled>▶ Мені тыңдашы · 0:45</button>
+    <span class="demo-note">Здесь будет ваше голосовое</span>
   </div>
 </section>
 
+<!-- ========== BOUQUET ========== -->
+<section class="wrap section">
+  <p class="eyebrow">Гүлдер</p>
+  <h2 class="section-title">Бұл гүлдер солмайды</h2>
+  <p class="sub">Бір жыл бұрын саған гүл сыйладым. Ал мыналар ешқашан солмайды. Экранды бассаң, тағы гүл шығады.</p>
+  <div class="bouquet-box"><canvas id="bouquet" aria-label="Экранда өсетін гүл шоғы"></canvas></div>
+</section>
+
+<!-- ========== OUR BOOK ========== -->
+<section class="wrap section" id="book">
+  <p class="eyebrow">Біздің кітап</p>
+  <h2 class="section-title">Бірге жазамыз</h2>
+  <p class="sub">Есте қалсын деген нәрсенің бәрін осында жазамыз. Он жылдан кейін оқысақ, керемет болады.</p>
+  <div class="auth-bar" id="authBar"></div>
+  <div class="tabs" role="tablist" aria-label="Кітап бөлімдері">
+    <button type="button" role="tab" data-tab="chronicle" aria-selected="true">Естеліктер</button>
+    <button type="button" role="tab" data-tab="firsts" aria-selected="false">Бірінші рет</button>
+    <button type="button" role="tab" data-tab="dreams" aria-selected="false">Армандар</button>
+    <button type="button" role="tab" data-tab="capsules" aria-selected="false">Болашаққа хат</button>
+  </div>
+  <div class="tab-head">
+    <p class="tab-desc" id="tabDesc"></p>
+    <button class="btn small" id="addBtn" type="button">+ Қосу</button>
+  </div>
+  <div class="book-list" id="bookList" role="tabpanel"></div>
+</section>
+
+<div id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <form class="sheet-card" id="sheetForm" novalidate>
+    <h3 id="sheetTitle">Жаңа жазба</h3>
+    <div id="sheetFields" class="fields"></div>
+    <p class="form-err" id="formErr"></p>
+    <div class="sheet-actions">
+      <button type="button" class="ghost" id="sheetCancel">Болдырмау</button>
+      <button class="btn" type="submit" id="sheetSave">Сақтау</button>
+    </div>
+  </form>
+</div>
+
+<!-- ========== COUPONS ========== -->
+<section class="wrap section">
+  <p class="eyebrow">Купондар</p>
+  <h2 class="section-title">Мерзімі бітпейді</h2>
+  <div class="coupons" id="coupons">
+    <div class="coupon" data-id="c1"><span class="k">Купон № 1</span><h3>Кешкі тамақты мен істеймін</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
+    <div class="coupon" data-id="c2"><span class="k">Купон № 2</span><h3>Кезексіз құшақ</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
+    <div class="coupon" data-id="c3"><span class="k">Купон № 3</span><h3>Театрға тағы барамыз</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
+    <div class="coupon" data-id="c4"><span class="k">Купон № 4</span><h3>Фильмді сен таңдайсың</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
+    <div class="coupon wide" data-id="c5"><span class="k">Купон № 5 · басты</span><h3>Кез келген бір тілегің</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
+  </div>
+</section>
+
+<!-- ========== FINALE ========== -->
 <section class="wrap finale">
-  <h2>Год назад я подарил тебе цветы. <em>Держи ещё.</em></h2>
-  <button class="btn" id="flowers" type="button">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="2.5"/><path d="M12 5.5c0-2.5 3.5-3 3.5-.8M9.5 8C7 8 6.5 4.5 8.7 4.5M14.5 8c2.5 0 3 3.5.8 3.5M12 10.5V21M12 16c-2.5-.8-4.5-2.5-4.5-5"/></svg>
-    Подарить цветы
-  </button>
-  <p class="foot">03.11.2025 · Алматы · навсегда</p>
+  <p class="eyebrow">Финал</p>
+  <h2 class="section-title">Бұл әлі бәрі емес</h2>
+  <div class="invite">
+    <div class="invite-main">
+      <div class="label">Екінші жыл</div>
+      <h2>Тағы бір жыл бірге?</h2>
+      <p>Алда тағы театр, тау, гүл… Осы жылдың әр күнін сенімен бірге күтемін, балапаным.</p>
+    </div>
+    <div class="invite-stub"><span class="sm">Жыл</span><span class="big">II</span><span class="sm">2026–2027</span></div>
+  </div>
+  <div class="answer" id="answerBox">
+    <button class="btn" id="yes" type="button">Келісемін ♥</button>
+    <button class="ghost" id="maybe" type="button">Ойланамын</button>
+  </div>
+  <p class="foot">03.11.2025 · Алматы · мәңгілік</p>
 </section>
 
-<canvas id="petals" aria-hidden="true"></canvas>
+<!-- ========== REPLAY / RESET ========== -->
+<section class="wrap replay-box" id="replayBox">
+  <p class="eyebrow">Біздің квест</p>
+  <h2 class="section-title">Сол түн</h2>
+  <p class="sub">Біреуге көрсеткің келсе, бәрін басынан көрсетіп бере аласың. Немесе бәрін қайта өтуге болады.</p>
+  <div class="replay-actions">
+    <button class="btn" id="replayBtn" type="button">Қалай болғанын көрсету</button>
+    <button class="ghost" id="resetBtn" type="button">Қайта өту</button>
+  </div>
+  <div class="reset-confirm" id="resetConfirm" hidden>
+    <p>Шын басынан бастайық па? Квест пен сол күнгі суреттер өшіп қалады. Кітаптағы жазбалар қалады.</p>
+    <div class="replay-actions">
+      <button class="btn" id="resetYes" type="button">Иә, басынан</button>
+      <button class="ghost" id="resetNo" type="button">Болдырмау</button>
+    </div>
+  </div>
+</section>
+
+<button id="music" type="button" aria-label="Біздің әнді қосу" hidden></button>
+<span id="musicTip" hidden>Біздің ән</span>
+
+<div id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mCap">
+  <div class="polaroid">
+    <button class="close" id="mClose" type="button" aria-label="Жабу">×</button>
+    <div class="photo-ph" id="mPhoto"></div>
+    <p class="when" id="mWhen"></p>
+    <p class="cap" id="mCap"></p>
+  </div>
+</div>
+
+<canvas id="fx" aria-hidden="true"></canvas>
 
 <script>
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var css = getComputedStyle(document.documentElement);
-  function tok(n) { return css.getPropertyValue(n).trim(); }
+  var $ = function (id) { return document.getElementById(id); };
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
 
-  function rng(seed) {
-    return function () {
-      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
-      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
-      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    };
+  /* ================= AUDIO ================= */
+  var AC = null;
+  function ac() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} } return AC; }
+  function bell(when) {
+    var a = ac(); if (!a) return;
+    [1, 2.76, 5.4, 8.9].forEach(function (m, i) {
+      var o = a.createOscillator(), g = a.createGain();
+      o.type = 'sine'; o.frequency.value = 660 * m;
+      g.gain.setValueAtTime(0.0001, when);
+      g.gain.exponentialRampToValueAtTime(0.18 / (i + 1), when + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, when + 1.6 / (i * 0.6 + 1));
+      o.connect(g).connect(a.destination); o.start(when); o.stop(when + 1.8);
+    });
   }
-
-  /* ---------- Sky: stars, the Alatau ridges, city lights ---------- */
-  var sky = document.getElementById('sky');
-  var sctx = sky.getContext('2d');
-  var W = 0, H = 0, stars = [], lights = [], ridges = [];
-
-  function ridgeY(x, base, amp, seed) {
-    return base
-      - amp * (0.55 * Math.sin(x * 0.0042 + seed) + 0.3 * Math.abs(Math.sin(x * 0.011 + seed * 2.1))
-      + 0.18 * Math.sin(x * 0.027 + seed * 3.7));
+  function pluck(freq, when, vol) {
+    var a = ac(); if (!a) return;
+    var o = a.createOscillator(), o2 = a.createOscillator(), g = a.createGain();
+    o.type = 'sine'; o2.type = 'triangle'; o.frequency.value = freq; o2.frequency.value = freq * 2;
+    g.gain.setValueAtTime(0.0001, when);
+    g.gain.exponentialRampToValueAtTime(vol || 0.12, when + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.0001, when + 1.4);
+    o.connect(g); o2.connect(g); g.connect(a.destination);
+    o.start(when); o2.start(when); o.stop(when + 1.5); o2.stop(when + 1.5);
   }
-
-  function buildSky() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var r = sky.getBoundingClientRect();
-    W = r.width; H = r.height;
-    sky.width = Math.round(W * dpr); sky.height = Math.round(H * dpr);
-    sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var rand = rng(311);
-    stars = [];
-    var n = Math.round(W * H / 2600);
-    for (var i = 0; i < n; i++) {
-      stars.push({ x: rand() * W, y: rand() * H * 0.62, r: rand() * 1.1 + 0.2, p: rand() * 6.28, s: 0.6 + rand() * 1.6 });
+  // An original little music-box tune (placeholder for your song)
+  var N = { C5: 523.25, D5: 587.33, E5: 659.25, G5: 783.99, A5: 880, C6: 1046.5, G4: 392, A4: 440, E4: 329.63 };
+  var tune = ['E5','G5','A5','G5','E5','D5','C5','D5','E5','G5','E5','D5','C5','A4','C5','D5',
+              'E5','G5','A5','C6','A5','G5','E5','G5','A5','G5','E5','D5','C5','D5','C5','-'];
+  var bass = ['C5','-','G4','-','A4','-','E4','-'];
+  var musicOn = false, musicTimer = null, step = 0;
+  function playLoop() {
+    var a = ac(); if (!a || !musicOn) return;
+    var t = a.currentTime + 0.05, beat = 0.32;
+    for (var i = 0; i < 8; i++) {
+      var n = tune[(step + i) % tune.length];
+      if (n !== '-') pluck(N[n], t + i * beat, 0.09);
+      if ((step + i) % 4 === 0) { var b = bass[((step + i) / 4) % bass.length]; if (b !== '-') pluck(N[b] / 2, t + i * beat, 0.07); }
     }
-    var cityTop = H * 0.74;
-    ridges = [
-      { base: H * 0.60, amp: H * 0.16, seed: 1.3, color: tok('--ridge-1') },
-      { base: H * 0.67, amp: H * 0.11, seed: 4.2, color: tok('--ridge-2') },
-      { base: H * 0.74, amp: H * 0.06, seed: 7.9, color: tok('--ridge-3') }
-    ];
-    lights = [];
-    var palette = ['#ffd59a', '#ffbe78', '#fff0d2', '#eaa3ac', '#ffe2a8'];
-    var m = Math.round(W * 1.1);
-    for (var j = 0; j < m; j++) {
-      var y = cityTop + Math.pow(rand(), 0.7) * (H - cityTop);
-      var x = rand() * W;
-      if (y < ridgeY(x, ridges[2].base, ridges[2].amp, ridges[2].seed) + 4) continue;
-      lights.push({ x: x, y: y, r: 0.5 + rand() * 1.3 * ((y - cityTop) / (H - cityTop) + 0.4),
-        c: palette[(rand() * palette.length) | 0], p: rand() * 6.28, s: 0.5 + rand() * 2 });
-    }
+    step = (step + 8) % tune.length;
+    musicTimer = setTimeout(playLoop, beat * 8 * 1000 - 20);
   }
-
-  function drawSky(t) {
-    var g = sctx.createLinearGradient(0, 0, 0, H);
-    g.addColorStop(0, '#0a0c1a');
-    g.addColorStop(0.55, tok('--night-2'));
-    g.addColorStop(1, '#1d1530');
-    sctx.fillStyle = g; sctx.fillRect(0, 0, W, H);
-
-    for (var i = 0; i < stars.length; i++) {
-      var s = stars[i];
-      var a = reduce ? 0.7 : 0.45 + 0.55 * Math.abs(Math.sin(t * 0.0006 * s.s + s.p));
-      sctx.globalAlpha = a; sctx.fillStyle = '#f1e8da';
-      sctx.beginPath(); sctx.arc(s.x, s.y, s.r, 0, 6.283); sctx.fill();
-    }
-    sctx.globalAlpha = 1;
-
-    for (var k = 0; k < ridges.length; k++) {
-      var rd = ridges[k];
-      sctx.fillStyle = rd.color;
-      sctx.beginPath(); sctx.moveTo(0, H);
-      for (var x = 0; x <= W + 8; x += 8) sctx.lineTo(x, ridgeY(x, rd.base, rd.amp, rd.seed));
-      sctx.lineTo(W, H); sctx.closePath(); sctx.fill();
-      if (k === 0) {
-        sctx.strokeStyle = 'rgba(241,232,218,0.18)'; sctx.lineWidth = 1;
-        sctx.beginPath();
-        for (var x2 = 0; x2 <= W + 8; x2 += 8) {
-          var yy = ridgeY(x2, rd.base, rd.amp, rd.seed);
-          if (x2 === 0) sctx.moveTo(x2, yy); else sctx.lineTo(x2, yy);
-        }
-        sctx.stroke();
-      }
-    }
-
-    var haze = sctx.createLinearGradient(0, H * 0.72, 0, H);
-    haze.addColorStop(0, 'rgba(255,170,100,0)');
-    haze.addColorStop(1, 'rgba(255,170,100,0.16)');
-    sctx.fillStyle = haze; sctx.fillRect(0, H * 0.72, W, H * 0.28);
-
-    for (var j = 0; j < lights.length; j++) {
-      var l = lights[j];
-      sctx.globalAlpha = reduce ? 0.85 : 0.55 + 0.45 * Math.abs(Math.sin(t * 0.0012 * l.s + l.p));
-      sctx.fillStyle = l.c;
-      sctx.beginPath(); sctx.arc(l.x, l.y, l.r, 0, 6.283); sctx.fill();
-    }
-    sctx.globalAlpha = 1;
-
-    var fade = sctx.createLinearGradient(0, H * 0.86, 0, H);
-    fade.addColorStop(0, 'rgba(13,15,31,0)');
-    fade.addColorStop(1, tok('--night'));
-    sctx.fillStyle = fade; sctx.fillRect(0, H * 0.86, W, H * 0.14);
-  }
-
-  var skyVisible = true;
-  function skyLoop(t) {
-    if (skyVisible) drawSky(t);
-    if (!reduce) requestAnimationFrame(skyLoop);
-  }
-  buildSky(); drawSky(0);
-  if (!reduce) requestAnimationFrame(skyLoop);
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (e) { skyVisible = e[0].isIntersecting; }).observe(sky);
-  }
-  var rt;
-  window.addEventListener('resize', function () {
-    clearTimeout(rt);
-    rt = setTimeout(function () { buildSky(); drawSky(performance.now()); }, 120);
+  $('music').addEventListener('click', function () {
+    musicOn = !musicOn;
+    this.classList.toggle('on', musicOn);
+    this.setAttribute('aria-label', musicOn ? 'Музыканы өшіру' : 'Біздің әнді қосу');
+    $('musicTip').hidden = true;
+    if (musicOn) { var a = ac(); if (a && a.state === 'suspended') a.resume(); playLoop(); } else clearTimeout(musicTimer);
   });
 
-  /* ---------- Counter ---------- */
-  var start = new Date(2025, 10, 3, 0, 0, 0);
-  var anniv = new Date(2026, 10, 3, 0, 0, 0);
-  function plural(n, one, few, many) {
-    var a = Math.abs(n) % 100, b = a % 10;
-    if (a > 10 && a < 20) return many;
-    if (b > 1 && b < 5) return few;
-    if (b === 1) return one;
-    return many;
-  }
-  function pad(n) { return (n < 10 ? '0' : '') + n; }
-  var elD = document.getElementById('days'), elU = document.getElementById('daysUnit'),
-      elH = document.getElementById('hh'), elM = document.getElementById('mm'), elS = document.getElementById('ss'),
-      elUntil = document.getElementById('until');
-  function tick() {
-    var now = new Date();
-    var diff = Math.max(0, now - start);
-    var days = Math.floor(diff / 864e5);
-    var rem = diff - days * 864e5;
-    elD.textContent = days;
-    elU.textContent = plural(days, 'день', 'дня', 'дней');
-    elH.textContent = pad(Math.floor(rem / 36e5));
-    elM.textContent = pad(Math.floor(rem % 36e5 / 6e4));
-    elS.textContent = pad(Math.floor(rem % 6e4 / 1e3));
+  /* ================= FLOW: countdown → curtain → questions → titles → day plan → site ================= */
+  var T0 = new Date(2026, 10, 3, 0, 0, 0);          // полночь 3 ноября 2026, время телефона
+  var STAGE_KEY = 'diana.stage', PH_KEY = 'diana.dayPhotos', ARR_KEY = 'diana.arrived';
+  var stage = store(STAGE_KEY) || 'night';           // night → plan → site
+  var replay = false;
+  function setStage(s) { stage = s; if (!replay) store(STAGE_KEY, s); }
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  try { ['unlocked', 'seenStars', 'usedCoupons'].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
+  document.body.classList.add('locked');
 
-    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    var left = Math.round((anniv - today) / 864e5);
-    if (left > 0) {
-      elUntil.innerHTML = 'До нашей первой годовщины <strong>' + left + ' ' + plural(left, 'день', 'дня', 'дней') + '</strong>.';
-    } else if (left === 0) {
-      elUntil.innerHTML = '<strong>Сегодня ровно год.</strong> С годовщиной, любимая!';
-    } else {
-      var after = -left;
-      elUntil.innerHTML = 'Первый год позади, и уже <strong>' + after + ' ' + plural(after, 'день', 'дня', 'дней') + '</strong> второго.';
+  /* ---- countdown ---- */
+  var cdTimer = null;
+  function startCountdown(target, title) {
+    var c = $('countdown'); c.hidden = false; c.classList.remove('done', 'final');
+    $('plaque').hidden = true;
+    $('cdTitle').textContent = title || 'Жаным, сәл күте тұршы';
+    clearInterval(cdTimer);
+    function tick() {
+      var ms = target - new Date();
+      if (ms <= 0) { clearInterval(cdTimer); midnight(); return; }
+      var s = Math.ceil(ms / 1000), d = Math.floor(s / 86400);
+      $('cdDaysBox').hidden = d === 0; $('cdD').textContent = d;
+      $('cdH').textContent = pad2(Math.floor(s % 86400 / 3600)); $('cdM').textContent = pad2(Math.floor(s % 3600 / 60)); $('cdS').textContent = pad2(s % 60);
+      c.classList.toggle('final', s <= 10);
     }
+    tick(); cdTimer = setInterval(tick, 250);
+  }
+  function midnight() {
+    var c = $('countdown'); c.classList.remove('final'); c.classList.add('done');
+    $('cdDaysBox').hidden = true; $('cdH').textContent = '00'; $('cdM').textContent = '00'; $('cdS').textContent = '00';
+    $('cdTitle').textContent = 'Міне, уақыт келді!';
+    $('cdSub').textContent = 'Бүгін 3 қараша. Дәл бір жыл бұрын бәрі басталған';
+    spawn(60, 'heart'); fireworks();
+    setTimeout(function () { c.hidden = true; $('plaque').hidden = false; $('startBtn').focus(); }, reduce ? 400 : 3000);
+  }
+  $('cdSkip').addEventListener('click', function () { clearInterval(cdTimer); midnight(); });
+
+  /* ---- curtain ---- */
+  $('startBtn').addEventListener('click', function () {
+    var a = ac();
+    if (a) { if (a.state === 'suspended') a.resume(); var t = a.currentTime + 0.05; bell(t); bell(t + 0.7); bell(t + 1.4); }
+    setTimeout(function () {
+      $('gate').classList.add('open');
+      setTimeout(function () { if (replay) autoAnswer(); else if (!$('lockForm').hidden) $('answer').focus(); }, reduce ? 300 : 2000);
+    }, a ? 1900 : 300);
+  });
+
+  /* ---- questions ---- */
+  function norm(s) { return s.toLowerCase().replace(/ё/g, 'е').replace(/[^a-zа-яәіңғүұқөһ]/g, ''); }
+  function isNov3(raw) {
+    var low = raw.toLowerCase(), digits = raw.replace(/\D/g, '');
+    if (['311', '0311', '3112025', '03112025', '31125', '031125'].indexOf(digits) >= 0) return true;
+    return (low.indexOf('нояб') >= 0 || low.indexOf('қараша') >= 0 || low.indexOf('караша') >= 0) && /(^|\D)0?3(\D|$)/.test(low);
+  }
+  // any: true → правильный ответ ещё не указан, пока принимается любой
+  var QUESTIONS = [
+    { q: 'Екеуміздің махаббат өміріне алғаш қадам жасаған күніміз қай күн?', type: 'text', ph: 'Мысалы: 01.01.2025', ok: isNov3, show: '03.11.2025',
+      hints: ['Жоқ 🙂 Телефондағы күнге қарашы', 'Күз болатын, қараша', 'Үшінші қараша. Жаза ғой'], yes: 'Иә! 3 қараша — біздің күн' },
+    { q: 'Мен сені алғаш рет қай жерде құшақтадым?', type: 'text', show: 'Медеуде',
+      ok: function (raw) { var v = norm(raw); return v.indexOf('медеу') >= 0 || v.indexOf('medeu') >= 0 || v.indexOf('medeo') >= 0; },
+      hints: ['Жоқ 🙂 Таулар, мұз айдыны…', 'Алматының ең әйгілі мұз айдыны', '«М» әрпінен басталады'], yes: 'Иә, Медеуде ♥' },
+    { q: 'Сені қызықтырған менің Instagram-дағы жазбам қандай еді?', type: 'text', show: 'Есіміңіз кім болады?',
+      ok: function (raw) { var v = norm(raw); return v.indexOf('есім') >= 0 || v.indexOf('есим') >= 0; },
+      hints: ['Жоқ 🙂 Ол сұрақ еді', 'Мен сенің атыңды сұрадым', '«Есіміңіз…» деп басталады'], yes: 'Иә! «Есіміңіз кім болады?»' },
+    { q: 'Бірінші кездесуде қайда бардық?', type: 'text', show: 'Киноға',
+      ok: function (raw) { var v = norm(raw); return v.indexOf('кино') >= 0 || v.indexOf('kino') >= 0 || v.indexOf('cinema') >= 0; },
+      hints: ['Жоқ 🙂 Қараңғы зал, үлкен экран…', 'Попкорн есіңде ме?', '«К» әрпінен басталады'], yes: 'Иә, киноға. Бәрі сол жерден басталды' },
+    { q: 'Кинода қандай фильм көрдік?', type: 'choice', options: ['Келінжан', 'Қайтадан', 'Бизнес по-казахски', 'Қыз Жібек'], answer: 1,
+      yes: 'Дәл солай, «Қайтадан»' },
+    { q: 'Саған сөз салған күні қайда бардық?', type: 'text', show: 'Театрға',
+      ok: function (raw) { var v = norm(raw); return v.indexOf('театр') >= 0 || v.indexOf('theat') >= 0; },
+      hints: ['Жоқ 🙂 Ол жерде шымылдық болды', 'Сахна, актерлер, қойылым…', '«Т» әрпінен басталады'], yes: 'Иә, театрға. 03.11.2025' },
+    { q: 'Театрда қандай қойылымды көрдік?', type: 'choice', options: ['Қыз Жібек', 'Махаббат қызық мол жылдар', 'Абай', 'Ромео мен Джульетта'], answer: 1,
+      yes: 'Дәл солай. «Махаббат қызық мол жылдар»' },
+    { q: 'Мен сенің несіңді ең қатты жақсы көремін?', type: 'choice', options: ['Күлкіңді', 'Көздеріңді', 'Мінезіңді', 'Бәрін'], answer: -1,
+      yes: 'Дұрыс жауап: бәрін. Бірақ сен таптың ♥' }
+  ];
+  var qi = 0, tries = 0, qBusy = false;
+  var wrongLines = ['Жоқ 🙂 Тағы ойланшы', 'Есіңе түсірші, балапаным', 'Жоқ, жаным. Тағы бір рет'];
+  (function () { var d = $('qDots'); QUESTIONS.forEach(function () { d.appendChild(document.createElement('i')); }); })();
+  function shakeEl(el) { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); }
+  function showQuestion() {
+    var Q = QUESTIONS[qi]; tries = 0; qBusy = false;
+    $('qStep').textContent = 'Сұрақ ' + (qi + 1) + ' / ' + QUESTIONS.length;
+    Array.prototype.forEach.call($('qDots').children, function (d, i) { d.className = i < qi ? 'on' : i === qi ? 'cur' : ''; });
+    var h = $('qText'); h.textContent = Q.q; h.classList.remove('swap'); void h.offsetWidth; h.classList.add('swap');
+    $('lockMsg').textContent = ''; $('lockMsg').style.color = '';
+    if (Q.type === 'text') {
+      $('lockForm').hidden = false; $('choices').hidden = true;
+      $('answer').value = ''; $('answer').placeholder = Q.ph || 'Жауабың';
+      if (qi > 0 && !replay) $('answer').focus();
+    } else {
+      $('lockForm').hidden = true; var box = $('choices'); box.hidden = false; box.textContent = '';
+      Q.options.forEach(function (o, i) {
+        var b = document.createElement('button'); b.type = 'button'; b.textContent = o;
+        b.addEventListener('click', function () { if (!replay) pickChoice(i, b); });
+        box.appendChild(b);
+      });
+    }
+    if (replay && qi > 0) setTimeout(autoAnswer, 700);
+  }
+  function autoAnswer() {
+    var Q = QUESTIONS[qi]; if (!Q || qBusy) return;
+    if (Q.type === 'text') { $('answer').value = Q.show; correct(); }
+    else { var idx = Q.answer === -1 ? Q.options.length - 1 : Q.answer; $('choices').children[idx].classList.add('yes'); correct(); }
+  }
+  function correct() {
+    var Q = QUESTIONS[qi]; qBusy = true;
+    $('lockMsg').textContent = Q.yes; $('lockMsg').style.color = 'var(--gold)';
+    $('qDots').children[qi].className = 'on';
+    var a = ac(); if (a && a.state === 'running') { pluck(N.E5, a.currentTime, .1); pluck(N.G5, a.currentTime + .1, .1); pluck(N.C6, a.currentTime + .2, .1); }
+    var r = $('qDots').getBoundingClientRect(); burst(r.left + r.width / 2, r.top + 6, 16);
+    setTimeout(function () {
+      qi++;
+      if (qi < QUESTIONS.length) showQuestion();
+      else { $('lockMsg').textContent = 'Бәрін таптың! Кел, жүрегім ♥'; setTimeout(playTitles, 1100); }
+    }, replay ? 1300 : 1600);
+  }
+  function pickChoice(i, b) {
+    if (qBusy || b.classList.contains('no')) return;
+    var Q = QUESTIONS[qi];
+    if (Q.answer === -1 || i === Q.answer) { b.classList.add('yes'); correct(); return; }
+    b.classList.add('no'); $('lockMsg').textContent = wrongLines[tries % wrongLines.length]; tries++;
+    shakeEl($('choices'));
+  }
+  $('lockForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (qBusy || replay) return;
+    var Q = QUESTIONS[qi], v = $('answer').value.trim();
+    if (!v) { $('lockMsg').textContent = 'Жауабыңды жазшы 🙂'; return; }
+    if (Q.any || Q.ok(v)) { correct(); return; }
+    $('lockMsg').textContent = Q.hints[Math.min(tries, Q.hints.length - 1)]; tries++;
+    shakeEl($('lockForm'));
+  });
+
+  /* ---- opening titles ---- */
+  var titleLines = [
+    ['small', 'Алматы · 3 қараша 2025'],
+    ['', 'Театрға екі билет. «Махаббат қызық мол жылдар».'],
+    ['', 'Мен қатты толқыдым.'],
+    ['', 'Сосын биікке шықтық, бүкіл қала жарқырап тұрды.'],
+    ['', 'Саған гүл сыйладым.'],
+    ['', 'Сонда бір жылымыз басталатынын білмедік қой.'],
+    ['big', 'Бұл жыл — сен туралы, жаным.']
+  ];
+  var titlesDone = false, titleTimer = null;
+  function startMusic() {
+    if (musicOn) return;
+    var a = ac(); if (!a) return;
+    if (a.state === 'suspended') a.resume();
+    musicOn = true; $('music').classList.add('on'); $('music').setAttribute('aria-label', 'Музыканы өшіру');
+    playLoop();
+  }
+  /* Our photos behind the titles: add 'data:image/jpeg;base64,...' strings here. */
+  var TITLE_PHOTOS = [];
+  var TITLE_PLACEHOLDERS = ['linear-gradient(160deg,#2a1030,#7a2233)', 'linear-gradient(200deg,#151830,#3a2a55)', 'linear-gradient(150deg,#4a0f1c,#a8566a)',
+    'linear-gradient(180deg,#1b1f3d,#6b4a7a)', 'linear-gradient(140deg,#3a1528,#d8b36a)', 'linear-gradient(170deg,#151830,#7a2233)', 'linear-gradient(160deg,#2a1d22,#eaa3ac)'];
+  function buildSlides() {
+    var box = $('tPhotos'); if (box.childElementCount) return;
+    var list = TITLE_PHOTOS.length ? TITLE_PHOTOS : TITLE_PLACEHOLDERS;
+    list.forEach(function (src, k) {
+      var d = document.createElement('div'); d.className = 't-photo';
+      if (TITLE_PHOTOS.length) d.style.backgroundImage = 'url("' + src + '")';
+      else { d.style.background = src; d.classList.add('ph'); d.setAttribute('data-n', 'сурет ' + (k + 1)); }
+      box.appendChild(d);
+    });
+  }
+  function showSlide(i) { var kids = $('tPhotos').children, n = kids.length; Array.prototype.forEach.call(kids, function (d, k) { d.classList.toggle('on', k === i % n); }); }
+  function playTitles() {
+    titlesDone = false;
+    buildSlides();
+    $('lock').classList.add('out');
+    $('titles').hidden = false;
+    startMusic();
+    var el = $('tLine'), i = 0;
+    function next() {
+      if (titlesDone) return;
+      if (i >= titleLines.length) { afterTitles(); return; }
+      el.classList.remove('show');
+      titleTimer = setTimeout(function () {
+        el.className = 't-line ' + titleLines[i][0];
+        el.textContent = titleLines[i][1];
+        showSlide(i);
+        void el.offsetWidth; el.classList.add('show');
+        i++;
+        titleTimer = setTimeout(next, i === titleLines.length ? 2800 : 2400);
+      }, reduce ? 100 : 800);
+    }
+    next();
+  }
+  function afterTitles() {
+    if (titlesDone) return;
+    titlesDone = true; clearTimeout(titleTimer);
+    $('gate').classList.add('gone');
+    if (!replay && stage === 'night') setStage('plan');
+    openPlan();
+  }
+  $('skip').addEventListener('click', afterTitles);
+
+  /* ---- the site itself ---- */
+  function enterSite() {
+    $('gate').classList.add('gone');
+    $('plan').hidden = true;
+    document.body.classList.remove('locked');
+    $('music').hidden = false;
+    if (replay) { replay = false; renderActs('dayActs', 'site'); }
+    else { $('musicTip').hidden = false; setTimeout(function () { $('musicTip').hidden = true; }, 6000); }
+    window.scrollTo(0, 0);
+    if (!reduce) spawn(70, 'petal');
+  }
+
+  /* ================= DAY PLAN 3 NOVEMBER ================= */
+  var ACTS = [
+    { id: 1, rn: 'I', title: 'Логикалық квест', det: 'Екеуміз жұмбақ шешеміз. Түнгі сұрақтар жай ғана разминка еді 😄',
+      need: 'Біткен соң сол жерден бір сурет қос.' },
+    { id: 2, rn: 'II', title: 'Тамақ', det: 'Квесттен кейін қарын ашады ғой. Орынды өзім таңдадым.',
+      need: 'Жеткенде «Келдік» батырмасын бас та, сурет қос. Сосын бүкіл сайт ашылады.' },
+    { id: 3, rn: 'III', title: 'Кино', det: 'Фильмді бірге таңдаймыз. Билетті ертерек алып қоямын.',
+      need: 'Кинодағы суретті сайттың өзіне қосасың.' }
+  ];
+  var photos = {};
+  try { photos = JSON.parse(store(PH_KEY) || '{}') || {}; } catch (e) { photos = {}; }
+  function isDone(id) { return !!photos[id]; }
+  function savePhotos() { if (replay) return true; try { localStorage.setItem(PH_KEY, JSON.stringify(photos)); return true; } catch (e) { return false; } }
+  function shrink(file) {
+    return new Promise(function (res, rej) {
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function () {
+        var s = Math.min(1, 1000 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+        c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+        res(c.toDataURL('image/jpeg', .72));
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); rej(new Error('Суретті ашу мүмкін болмады. Басқасын көрші.')); };
+      img.src = url;
+    });
+  }
+  function mk(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function photoPicker(act, ctx, label) {
+    var wrap = mk('div', 'pick-row');
+    var id = 'ph-' + ctx + '-' + act.id;
+    var lab = mk('label', 'pick-btn', label || 'Сурет қосу'); lab.htmlFor = id;
+    var inp = mk('input'); inp.type = 'file'; inp.accept = 'image/*'; inp.id = id;
+    var err = mk('p', 'pick-err');
+    inp.addEventListener('change', function () {
+      if (!inp.files[0]) return;
+      lab.textContent = 'Сақталуда…';
+      shrink(inp.files[0]).then(function (u) { complete(act, u, ctx, err, lab); })
+        .catch(function (e) { err.textContent = e.message; lab.textContent = label || 'Сурет қосу'; });
+    });
+    var skip = mk('button', 'no-photo', 'Суретсіз'); skip.type = 'button';
+    skip.addEventListener('click', function () { complete(act, 'none', ctx, err, lab); });
+    wrap.appendChild(lab); wrap.appendChild(inp); wrap.appendChild(skip); wrap.appendChild(err);
+    return wrap;
+  }
+  function complete(act, data, ctx, err, lab) {
+    photos[act.id] = data;
+    if (!savePhotos()) { delete photos[act.id]; err.textContent = 'Телефон жады толы. Кішірек сурет жүктеп көрші.'; lab.textContent = 'Сурет қосу'; return; }
+    var a = ac(); if (a && a.state === 'running') { pluck(N.C5, a.currentTime, .1); pluck(N.E5, a.currentTime + .1, .1); pluck(N.G5, a.currentTime + .2, .1); }
+    if (act.id === 2 && ctx === 'plan') {
+      setStage('site');
+      renderActs('planActs', 'plan');
+      $('planFoot').textContent = '';
+      $('planFoot').appendChild(mk('p', 'plan-open', 'Ура, келдік! Сайт ашылып жатыр ♥'));
+      spawn(80, 'heart'); fireworks();
+      setTimeout(enterSite, reduce ? 600 : 2800);
+      return;
+    }
+    burst(innerWidth / 2, innerHeight / 2, 30);
+    renderActs(ctx === 'plan' ? 'planActs' : 'dayActs', ctx);
+    if (ctx === 'site') renderActs('planActs', 'plan');
+  }
+  function renderActs(boxId, ctx) {
+    var box = $(boxId); if (!box) return; box.textContent = '';
+    var arrived = store(ARR_KEY) === '1' || isDone(2);
+    ACTS.forEach(function (act) {
+      var done = isDone(act.id);
+      var cur = !done && (act.id === 1 || isDone(act.id - 1)) && !(act.id === 3 && ctx === 'plan');
+      var c = mk('article', 'dact' + (done ? ' done' : cur ? ' cur' : ''));
+      var top = mk('div', 'dact-top');
+      top.appendChild(mk('span', 'dact-rn', act.rn));
+      var tt = mk('div', 'dact-tt'); tt.appendChild(mk('h4', null, act.title));
+      tt.appendChild(mk('span', 'dact-pill', done ? 'Болды ✓' : cur ? 'Қазір' : 'Кейін'));
+      top.appendChild(tt); c.appendChild(top);
+      c.appendChild(mk('p', 'dact-det', act.det));
+      if (done && photos[act.id] !== 'none') { var im = mk('img', 'dact-img'); im.src = photos[act.id]; im.alt = act.title; c.appendChild(im); }
+      if (!done && !replay) {
+        if (act.id === 1) { c.appendChild(mk('p', 'dact-need', act.need)); c.appendChild(photoPicker(act, ctx, 'Квесттен сурет қосу')); }
+        if (act.id === 2) {
+          c.appendChild(mk('p', 'dact-need', act.need));
+          if (!isDone(1)) c.appendChild(mk('p', 'dact-wait', 'Алдымен квестті белгіле'));
+          else if (!arrived) {
+            var go = mk('button', 'btn small', 'Келдік'); go.type = 'button';
+            go.addEventListener('click', function () { store(ARR_KEY, '1'); renderActs(boxId, ctx); });
+            c.appendChild(go);
+          } else c.appendChild(photoPicker(act, ctx, 'Тамақтан сурет қосу'));
+        }
+        if (act.id === 3) {
+          c.appendChild(mk('p', 'dact-need', act.need));
+          if (ctx === 'site' && isDone(2)) c.appendChild(photoPicker(act, ctx, 'Кинодан сурет қосу'));
+        }
+      }
+      box.appendChild(c);
+    });
+  }
+  function openPlan() {
+    document.body.classList.add('locked');
+    $('plan').hidden = false; $('plan').scrollTop = 0;
+    renderActs('planActs', 'plan');
+    var f = $('planFoot'); f.textContent = '';
+    if (replay || stage === 'site') {
+      var b = mk('button', 'btn', 'Сайтқа өту'); b.type = 'button'; b.addEventListener('click', enterSite); f.appendChild(b);
+    } else f.appendChild(mk('p', 'plan-note', 'Қалғаны кешкі тамақта ашылады. Күндіз көріскенше ♥'));
+  }
+
+  /* ================= REPLAY & RESET ================= */
+  function resetGateUI() {
+    var g = $('gate'); g.classList.remove('gone', 'open');
+    $('lock').classList.remove('out'); $('titles').hidden = true; $('tLine').className = 't-line'; $('tLine').textContent = '';
+    qi = 0; qBusy = false; showQuestion();
+  }
+  $('replayBtn').addEventListener('click', function () {
+    replay = true;
+    document.body.classList.add('locked');
+    resetGateUI();
+    startCountdown(new Date(Date.now() + 6000), 'Сол түні осылай болған');
+  });
+  $('resetBtn').addEventListener('click', function () { $('resetConfirm').hidden = false; $('resetBtn').hidden = true; $('resetYes').focus(); });
+  $('resetNo').addEventListener('click', function () { $('resetConfirm').hidden = true; $('resetBtn').hidden = false; });
+  $('planReset').addEventListener('click', function () {
+    var b = this;
+    if (!b.classList.contains('confirm')) { b.classList.add('confirm'); b.textContent = 'Точно? Нажмите ещё раз, чтобы начать с таймера'; return; }
+    try { [STAGE_KEY, PH_KEY, ARR_KEY].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
+    location.reload();
+  });
+  $('resetYes').addEventListener('click', function () {
+    try { [STAGE_KEY, PH_KEY, ARR_KEY].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
+    location.reload();
+  });
+
+  /* ---- start in the right place ---- */
+  showQuestion();
+  if (stage === 'site') { $('gate').classList.add('gone'); document.body.classList.remove('locked'); $('music').hidden = false; renderActs('dayActs', 'site'); }
+  else if (stage === 'plan') { $('gate').classList.add('gone'); openPlan(); renderActs('dayActs', 'site'); }
+  else { renderActs('dayActs', 'site'); if (new Date() < T0) startCountdown(T0); }
+
+  /* ---- Envelope ---- */
+  $('seal').addEventListener('click', function () {
+    $('envelope').classList.add('opened');
+    var a = ac(); if (a && a.state === 'running') { pluck(N.G5, a.currentTime, .1); pluck(N.C6, a.currentTime + .15, .1); }
+    setTimeout(function () { $('envWrap').classList.add('gone'); }, 1000);
+    setTimeout(function () {
+      $('envWrap').hidden = true;
+      var l = $('letter'); l.hidden = false; l.classList.add('rise');
+      var r = l.getBoundingClientRect(); burst(r.left + r.width / 2, Math.max(60, r.top + 40), 26);
+    }, 1700);
+  });
+
+  /* ================= SKY ================= */
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  var sky = $('sky'), sctx = sky.getContext('2d'), W = 0, H = 0, stars = [], lights = [], ridges = [];
+  function ridgeY(x, base, amp, seed) { return base - amp * (0.55 * Math.sin(x * 0.0042 + seed) + 0.3 * Math.abs(Math.sin(x * 0.011 + seed * 2.1)) + 0.18 * Math.sin(x * 0.027 + seed * 3.7)); }
+  function buildSky() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), r = sky.getBoundingClientRect();
+    W = r.width; H = r.height; sky.width = Math.round(W * dpr); sky.height = Math.round(H * dpr); sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var rand = rng(311); stars = [];
+    var n = Math.round(W * H / 2400);
+    for (var i = 0; i < n; i++) stars.push({ x: rand() * W, y: rand() * (H - 200), r: rand() * 1.1 + 0.2, p: rand() * 6.28, s: 0.6 + rand() * 1.6 });
+    var bottom = H, cityTop = bottom - 120;
+    ridges = [
+      { base: bottom - 150, amp: 70, seed: 1.3, color: '#1b1f3d' },
+      { base: bottom - 125, amp: 45, seed: 4.2, color: '#141731' },
+      { base: bottom - 105, amp: 22, seed: 7.9, color: '#0f1226' }
+    ];
+    lights = [];
+    var pal = ['#ffd59a', '#ffbe78', '#fff0d2', '#eaa3ac', '#ffe2a8'];
+    for (var j = 0; j < W * 1.1; j++) {
+      var y = cityTop + Math.pow(rand(), 0.7) * 120, x = rand() * W;
+      if (y < ridgeY(x, ridges[2].base, ridges[2].amp, ridges[2].seed) + 4) continue;
+      lights.push({ x: x, y: y, r: 0.5 + rand() * 1.4 * ((y - cityTop) / 120 + 0.4), c: pal[(rand() * pal.length) | 0], p: rand() * 6.28, s: 0.5 + rand() * 2 });
+    }
+  }
+  function drawSky(t) {
+    var g = sctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#0a0c1a'); g.addColorStop(0.7, '#151830'); g.addColorStop(1, '#1d1530');
+    sctx.fillStyle = g; sctx.fillRect(0, 0, W, H);
+    sctx.fillStyle = '#f1e8da';
+    for (var i = 0; i < stars.length; i++) { var s = stars[i]; sctx.globalAlpha = reduce ? .7 : .45 + .55 * Math.abs(Math.sin(t * .0006 * s.s + s.p)); sctx.beginPath(); sctx.arc(s.x, s.y, s.r, 0, 6.283); sctx.fill(); }
+    sctx.globalAlpha = 1;
+    ridges.forEach(function (rd, k) {
+      sctx.fillStyle = rd.color; sctx.beginPath(); sctx.moveTo(0, H);
+      for (var x = 0; x <= W + 8; x += 8) sctx.lineTo(x, ridgeY(x, rd.base, rd.amp, rd.seed));
+      sctx.lineTo(W, H); sctx.closePath(); sctx.fill();
+      if (k === 0) { sctx.strokeStyle = 'rgba(241,232,218,0.18)'; sctx.beginPath(); for (var x2 = 0; x2 <= W + 8; x2 += 8) { var yy = ridgeY(x2, rd.base, rd.amp, rd.seed); x2 ? sctx.lineTo(x2, yy) : sctx.moveTo(x2, yy); } sctx.stroke(); }
+    });
+    var haze = sctx.createLinearGradient(0, H - 130, 0, H); haze.addColorStop(0, 'rgba(255,170,100,0)'); haze.addColorStop(1, 'rgba(255,170,100,0.16)');
+    sctx.fillStyle = haze; sctx.fillRect(0, H - 130, W, 130);
+    for (var j = 0; j < lights.length; j++) { var l = lights[j]; sctx.globalAlpha = reduce ? .85 : .55 + .45 * Math.abs(Math.sin(t * .0012 * l.s + l.p)); sctx.fillStyle = l.c; sctx.beginPath(); sctx.arc(l.x, l.y, l.r, 0, 6.283); sctx.fill(); }
+    sctx.globalAlpha = 1;
+    var fade = sctx.createLinearGradient(0, H - 40, 0, H); fade.addColorStop(0, 'rgba(13,15,31,0)'); fade.addColorStop(1, '#0d0f1f');
+    sctx.fillStyle = fade; sctx.fillRect(0, H - 40, W, 40);
+  }
+  var skyVisible = true;
+  function skyLoop(t) { if (skyVisible) drawSky(t); requestAnimationFrame(skyLoop); }
+  buildSky(); drawSky(0);
+  if (!reduce) requestAnimationFrame(skyLoop);
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { skyVisible = e[0].isIntersecting; }).observe(sky);
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { buildSky(); drawSky(performance.now()); sizeFx(); }, 120); });
+
+  /* ================= CONSTELLATION ================= */
+  var memories = [
+    { when: 'Алғашқы кездесу', cap: 'Кино. «Қайтадан». Бәрі осыдан басталды', bg: 'linear-gradient(135deg,#1e2a4a,#7a2233)' },
+    { when: 'Медеу', cap: 'Сені алғаш рет құшақтаған жер', bg: 'linear-gradient(160deg,#9cc3e6,#1e3b5a)' },
+    { when: '3 қараша 2025', cap: 'Театр. Саған сөз салған кешім', bg: 'linear-gradient(135deg,#7a2233,#2a1030)' },
+    { when: 'Сол кеш', cap: 'Биіктен қарадық, қала жарқырап тұрды', bg: 'linear-gradient(160deg,#151830,#3a2a55 60%,#d8b36a)' },
+    { when: 'Сол кеш', cap: 'Саған алғаш гүл сыйладым', bg: 'linear-gradient(135deg,#eaa3ac,#7a2233)' },
+    { when: 'Желтоқсан', cap: 'Бірінші рет бірге қарсы алған Жаңа жыл', bg: 'linear-gradient(135deg,#1e3b5a,#9cc3e6)' },
+    { when: 'Жаз', cap: 'Таулар, күн және сен', bg: 'linear-gradient(135deg,#d0763b,#f1d58a)' },
+    { when: '3 қараша 2026', cap: 'Бір жыл бірге. Бұл әлі басы ғана', bg: 'linear-gradient(135deg,#2a1d22,#eaa3ac)' }
+  ];
+  $('totalCount').textContent = memories.length;
+  function heartPt(t) {
+    var x = 16 * Math.pow(Math.sin(t), 3);
+    var y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+    return { x: 50 + x * 2.75, y: 44 - y * 2.75 };
+  }
+  var ts = [0, 0.8, 1.6, 2.35, Math.PI, 2 * Math.PI - 2.35, 2 * Math.PI - 1.6, 2 * Math.PI - 0.8];
+  var pts = ts.map(heartPt);
+  var con = $('constellation'), seen = {};
+  seen = {};
+  var dense = [], len = 0;
+  for (var k = 0; k <= 120; k++) { dense.push(heartPt(k / 120 * 2 * Math.PI)); if (k) len += Math.hypot(dense[k].x - dense[k - 1].x, dense[k].y - dense[k - 1].y); }
+  $('heartLine').setAttribute('points', dense.map(function (q) { return q.x.toFixed(2) + ',' + q.y.toFixed(2); }).join(' '));
+  $('heartLine').style.setProperty('--len', Math.ceil(len * 1.3));
+  var storyAt = [2, 1, 0, 7, 6, 5, 4, 3]; // which memory sits at each heart point (clockwise from top centre)
+  pts.forEach(function (p, idx) {
+    var m = storyAt[idx];
+    var b = document.createElement('button');
+    b.className = 'star' + (seen[m] ? ' seen' : '');
+    b.type = 'button';
+    b.style.left = p.x + '%'; b.style.top = (p.y / 92 * 100) + '%';
+    b.style.setProperty('--d', (idx * 0.3) + 's');
+    b.setAttribute('aria-label', 'Естелік: ' + memories[m].when);
+    b.innerHTML = '<i></i>';
+    b.addEventListener('click', function () { openMemory(m, b); });
+    con.appendChild(b);
+  });
+  function countSeen() { return Object.keys(seen).length; }
+  function updateSeen() {
+    $('seenCount').textContent = countSeen();
+    if (countSeen() >= memories.length) { con.classList.add('done'); $('cwrap').classList.add('done'); }
+  }
+  updateSeen();
+  var lastStar = null;
+  function openMemory(m, btn) {
+    lastStar = btn;
+    var mem = memories[m];
+    $('mPhoto').style.background = mem.bg;
+    $('mPhoto').textContent = 'Здесь будет ваше фото';
+    $('mWhen').textContent = mem.when; $('mCap').textContent = mem.cap;
+    $('modal').hidden = false; $('mClose').focus();
+    var a = ac(); if (a && a.state === 'running') pluck([N.E5, N.G5, N.A5, N.C6, N.D5, N.E5, N.G5, N.C5][m], a.currentTime + 0.02, 0.1);
+    if (!seen[m]) { seen[m] = 1; btn.classList.add('seen'); updateSeen(); }
+  }
+  function closeModal() { $('modal').hidden = true; if (lastStar) lastStar.focus(); if (countSeen() >= memories.length && !closeModal.fired) { closeModal.fired = true; setTimeout(function () { spawn(50, 'heart'); }, 1800); } }
+  $('mClose').addEventListener('click', closeModal);
+  $('modal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('modal').hidden) closeModal(); });
+
+  /* ================= COUNTER ================= */
+  var start = new Date(2025, 10, 3), anniv = new Date(2026, 10, 3);
+  function plural(n, a, b, c) { var x = Math.abs(n) % 100, y = x % 10; if (x > 10 && x < 20) return c; if (y > 1 && y < 5) return b; if (y === 1) return a; return c; }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function tick() {
+    var now = new Date(), diff = Math.max(0, now - start), d = Math.floor(diff / 864e5), rem = diff - d * 864e5;
+    $('days').textContent = d; $('daysUnit').textContent = 'күн';
+    $('hh').textContent = pad(Math.floor(rem / 36e5)); $('mm').textContent = pad(Math.floor(rem % 36e5 / 6e4)); $('ss').textContent = pad(Math.floor(rem % 6e4 / 1e3));
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate()), left = Math.round((anniv - today) / 864e5);
+    $('until').innerHTML = left > 0 ? 'Алғашқы жылдығымызға <strong>' + left + ' күн</strong> қалды.'
+      : left === 0 ? '<strong>Бүгін дәл бір жыл!</strong> Құтты болсын, балапаным!'
+      : 'Бір жыл өтті, енді екінші жылдың <strong>' + (-left) + ' күні</strong> болды.';
   }
   tick(); setInterval(tick, 1000);
 
-  /* ---------- Flowers ---------- */
-  var pc = document.getElementById('petals');
-  var pctx = pc.getContext('2d');
-  var petals = [], running = false, PW = 0, PH = 0;
-  var hues = ['#eaa3ac', '#f2b8be', '#d9707f', '#f7d1d4', '#c94f63', '#d8b36a'];
-  function sizePetals() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    PW = window.innerWidth; PH = window.innerHeight;
-    pc.width = Math.round(PW * dpr); pc.height = Math.round(PH * dpr);
-    pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  sizePetals();
-  window.addEventListener('resize', sizePetals);
-
-  function spawn(n) {
-    for (var i = 0; i < n; i++) {
-      petals.push({
-        x: Math.random() * PW, y: -20 - Math.random() * PH * 0.6,
-        vx: (Math.random() - 0.5) * 0.6, vy: 0.8 + Math.random() * 1.4,
-        r: 6 + Math.random() * 9, a: Math.random() * 6.28, va: (Math.random() - 0.5) * 0.06,
-        sw: Math.random() * 6.28, c: hues[(Math.random() * hues.length) | 0]
-      });
-    }
-    if (!running) { running = true; requestAnimationFrame(step); }
-  }
-  function drawPetal(p) {
-    pctx.save();
-    pctx.translate(p.x, p.y); pctx.rotate(p.a);
-    pctx.scale(1, 0.55 + 0.45 * Math.abs(Math.sin(p.sw)));
-    pctx.fillStyle = p.c;
-    pctx.beginPath();
-    pctx.moveTo(0, -p.r);
-    pctx.bezierCurveTo(p.r * 0.9, -p.r * 0.6, p.r * 0.7, p.r * 0.7, 0, p.r);
-    pctx.bezierCurveTo(-p.r * 0.7, p.r * 0.7, -p.r * 0.9, -p.r * 0.6, 0, -p.r);
-    pctx.fill();
-    pctx.restore();
-  }
-  function step() {
-    pctx.clearRect(0, 0, PW, PH);
-    for (var i = petals.length - 1; i >= 0; i--) {
-      var p = petals[i];
-      p.sw += 0.03; p.x += p.vx + Math.sin(p.sw) * 0.6; p.y += p.vy; p.a += p.va;
-      if (p.y > PH + 30) { petals.splice(i, 1); continue; }
-      drawPetal(p);
-    }
-    if (petals.length) requestAnimationFrame(step);
-    else { running = false; pctx.clearRect(0, 0, PW, PH); }
-  }
-  document.getElementById('flowers').addEventListener('click', function () {
-    spawn(reduce ? 24 : 90);
+  /* ================= REASONS ================= */
+  var reasons = [
+    'Сенімен жай кеш те мереке болып кетеді.',
+    'Сен күлгенде не айтып жатқанымды ұмытып қаламын.',
+    'Мен өзіме сенбесем де, сен маған сенесің.',
+    'Қасыңда болсам, жаным тынышталады.',
+    'Ешкім байқамайтын ұсақ нәрселерді сен байқайсың.',
+    'Сол кеші биікте сенсіз ешқайда барғым келмейтінін түсіндім.',
+    'Бір ауыз сөзіңмен-ақ көңілімді көтеріп жібересің.',
+    'Сенің күлкің Алматының барлық шамынан әдемі.',
+    'Сенімен бірге жақсы адам болғым келеді.',
+    'Сен шынайысың.',
+    'Тіпті ұрыссақ та, құшақтасып бітеміз.',
+    'Себебі сен — сенсің. Болды.'
+  ];
+  var ri = 0;
+  $('nextReason').addEventListener('click', function () {
+    var el = $('reason'); el.classList.add('fade');
+    setTimeout(function () {
+      ri = (ri + 1) % reasons.length;
+      el.textContent = reasons[ri];
+      $('reasonCount').textContent = (ri + 1) + '-себеп / ' + reasons.length;
+      el.classList.remove('fade');
+    }, reduce ? 0 : 300);
   });
-  if (!reduce) setTimeout(function () { spawn(26); }, 900);
+
+  /* ================= COUPONS ================= */
+  var used = {};
+  used = {};
+  Array.prototype.forEach.call(document.querySelectorAll('.coupon'), function (c) {
+    var id = c.getAttribute('data-id');
+    if (used[id]) c.classList.add('used');
+    c.querySelector('button').addEventListener('click', function () {
+      c.classList.add('used'); used[id] = 1;
+      var a = ac(); if (a && a.state === 'running') { pluck(N.G4, a.currentTime, .12); }
+      var r = c.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 18);
+    });
+  });
+
+  /* ================= FINALE ================= */
+  var maybe = $('maybe'), box = $('answerBox');
+  var maybeLabels = ['Ойланамын', 'Шынымен бе?', 'Тағы ойланып көрсең ше?', 'Өтінемін', 'Батырма қашудан шаршады', '«Келісемін» батырмасын бас ♥'];
+  var mi = 0;
+  function dodge(e) {
+    if (e && e.cancelable) e.preventDefault();
+    mi = Math.min(mi + 1, maybeLabels.length - 1);
+    maybe.textContent = maybeLabels[mi];
+    var bw = box.clientWidth, mw = maybe.offsetWidth;
+    var x = Math.random() * Math.max(0, bw - mw) - maybe.offsetLeft;
+    var y = (Math.random() - 0.5) * 80;
+    maybe.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+  }
+  maybe.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') dodge(); });
+  maybe.addEventListener('touchstart', dodge, { passive: false });
+  maybe.addEventListener('click', dodge);
+  $('yes').addEventListener('click', function () {
+    box.innerHTML = '<p class="yes-msg">Ура! Екінші жылымыз басталды ♥</p>';
+    spawn(80, 'heart');
+    fireworks();
+    var a = ac(); if (a) { if (a.state === 'suspended') a.resume(); var t = a.currentTime + .02; [N.C5, N.E5, N.G5, N.C6].forEach(function (f, i) { pluck(f, t + i * .12, .12); }); }
+  });
+
+  /* ================= BOUQUET ================= */
+  var bq = $('bouquet'), bctx = bq.getContext('2d'), BW = 0, BH = 0, flowers = [], bRunning = false, bStarted = false;
+  var fcol = [['#eaa3ac', '#f9dde0'], ['#c94f63', '#ec8d9b'], ['#f2b8be', '#fff2f3'], ['#d8b36a', '#f6e2ad'], ['#9d3b5a', '#d97a98'], ['#f4f0e6', '#ffffff']];
+  function sizeBq() {
+    var d = Math.min(window.devicePixelRatio || 1, 2), r = bq.getBoundingClientRect();
+    BW = r.width; BH = r.height; bq.width = Math.round(BW * d); bq.height = Math.round(BH * d); bctx.setTransform(d, 0, 0, d, 0, 0);
+  }
+  function addFlower(tx, ty, delay) {
+    var bx = BW / 2 + (Math.random() - .5) * 16, by = BH - 20;
+    var c = fcol[(Math.random() * fcol.length) | 0];
+    flowers.push({ bx: bx, by: by, cx: (bx + tx) / 2 + (Math.random() - .5) * 50, cy: (by + ty) / 2, tx: tx, ty: ty,
+      t: -(delay || 0), r: 15 + Math.random() * 13, n: 5 + ((Math.random() * 4) | 0), c1: c[0], c2: c[1],
+      rot: Math.random() * 6.28, leaf: Math.random() < .75, ls: Math.random() < .5 ? 1 : -1 });
+    if (!bRunning) { bRunning = true; requestAnimationFrame(drawBq); }
+  }
+  function seedBouquet() {
+    var count = 11;
+    for (var i = 0; i < count; i++) {
+      var a = (-55 + 110 * i / (count - 1)) * Math.PI / 180 + (Math.random() - .5) * .12;
+      var L = BH * (.62 + Math.random() * .2) * (1 - Math.abs(a) * .18);
+      addFlower(BW / 2 + Math.sin(a) * L * .85, BH - 20 - Math.cos(a) * L, i * .09 + Math.random() * .1);
+    }
+  }
+  function qp(f, s) { var u = 1 - s; return { x: u * u * f.bx + 2 * u * s * f.cx + s * s * f.tx, y: u * u * f.by + 2 * u * s * f.cy + s * s * f.ty }; }
+  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function back(x) { var c = 1.70158; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }
+  function drawBq() {
+    bctx.clearRect(0, 0, BW, BH);
+    var active = false;
+    flowers.forEach(function (f) { f.t += reduce ? 2 : .014; if (f.t < 1.6) active = true; });
+    // stems + leaves
+    flowers.forEach(function (f) {
+      var s = clamp(f.t / .8); if (s <= 0) return;
+      bctx.strokeStyle = '#4f7a54'; bctx.lineWidth = 2.6; bctx.lineCap = 'round';
+      bctx.beginPath(); var p0 = qp(f, 0); bctx.moveTo(p0.x, p0.y);
+      for (var k = 1; k <= 30; k++) { var q = qp(f, s * k / 30); bctx.lineTo(q.x, q.y); }
+      bctx.stroke();
+      if (f.leaf && s > .55) {
+        var lp = qp(f, .5), ls = clamp((s - .55) / .3);
+        bctx.save(); bctx.translate(lp.x, lp.y); bctx.rotate(f.ls * .9 - .3); bctx.fillStyle = '#5f9465';
+        bctx.beginPath(); bctx.ellipse(f.ls * 10 * ls, 0, 13 * ls, 5 * ls, 0, 0, 6.283); bctx.fill(); bctx.restore();
+      }
+    });
+    // kraft paper wrap + velvet ribbon
+    var top = BH - 170, cx = BW / 2;
+    bctx.fillStyle = '#c4a27a';
+    bctx.beginPath(); bctx.moveTo(cx - 100, top); bctx.lineTo(cx + 100, top); bctx.lineTo(cx + 24, BH - 6); bctx.lineTo(cx - 24, BH - 6); bctx.closePath(); bctx.fill();
+    bctx.fillStyle = '#b08d64';
+    bctx.beginPath(); bctx.moveTo(cx - 100, top); bctx.lineTo(cx - 30, top + 8); bctx.lineTo(cx - 24, BH - 6); bctx.closePath(); bctx.fill();
+    bctx.beginPath(); bctx.moveTo(cx + 100, top); bctx.lineTo(cx + 40, top + 6); bctx.lineTo(cx + 24, BH - 6); bctx.closePath(); bctx.fill();
+    var ry = BH - 92, rw = 100 - (ry - top) / (BH - 6 - top) * 76;
+    bctx.fillStyle = '#7a2233'; bctx.fillRect(cx - rw, ry - 7, rw * 2, 14);
+    bctx.beginPath(); bctx.ellipse(cx - 16, ry, 18, 9, -.4, 0, 6.283); bctx.ellipse(cx + 16, ry, 18, 9, .4, 0, 6.283); bctx.fill();
+    bctx.fillStyle = '#4a0f1c'; bctx.beginPath(); bctx.arc(cx, ry, 6, 0, 6.283); bctx.fill();
+    // blooms
+    flowers.forEach(function (f) {
+      var b = clamp((f.t - .72) / .7); if (b <= 0) return;
+      var e = back(b), r = f.r * e, tip = qp(f, 1);
+      bctx.save(); bctx.translate(tip.x, tip.y); bctx.rotate(f.rot + (1 - b) * 1.2);
+      bctx.fillStyle = f.c1;
+      for (var i = 0; i < f.n; i++) { bctx.rotate(6.283 / f.n); bctx.beginPath(); bctx.ellipse(r * .55, 0, r * .55, r * .33, 0, 0, 6.283); bctx.fill(); }
+      bctx.rotate(3.1416 / f.n); bctx.fillStyle = f.c2;
+      for (var j = 0; j < f.n; j++) { bctx.rotate(6.283 / f.n); bctx.beginPath(); bctx.ellipse(r * .32, 0, r * .32, r * .18, 0, 0, 6.283); bctx.fill(); }
+      bctx.fillStyle = '#d8b36a'; bctx.beginPath(); bctx.arc(0, 0, r * .2, 0, 6.283); bctx.fill();
+      bctx.restore();
+    });
+    if (active) requestAnimationFrame(drawBq); else bRunning = false;
+  }
+  sizeBq();
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { if (e[0].isIntersecting && !bStarted) { bStarted = true; seedBouquet(); } }, { threshold: .35 }).observe(bq);
+  } else { bStarted = true; seedBouquet(); }
+  bq.addEventListener('pointerdown', function (e) {
+    var r = bq.getBoundingClientRect(), x = e.clientX - r.left, y = Math.min(e.clientY - r.top, BH - 190);
+    addFlower(x, Math.max(30, y), 0);
+    var a = ac(); if (a && a.state === 'running') pluck([N.C6, N.A5, N.G5, N.E5][(Math.random() * 4) | 0], a.currentTime, .08);
+  });
+  window.addEventListener('resize', function () {
+    var ow = BW, oh = BH; sizeBq();
+    if (!ow) return;
+    flowers.forEach(function (f) { ['bx', 'cx', 'tx'].forEach(function (k) { f[k] = f[k] / ow * BW; }); ['by', 'cy', 'ty'].forEach(function (k) { f[k] = BH - (oh - f[k]); }); });
+    if (!bRunning) { bRunning = true; requestAnimationFrame(drawBq); }
+  });
+
+  /* ================= FX: petals, hearts, confetti ================= */
+  var fx = $('fx'), fctx = fx.getContext('2d'), parts = [], running = false, FW = 0, FH = 0;
+  var cols = ['#eaa3ac', '#f2b8be', '#d9707f', '#f7d1d4', '#c94f63', '#d8b36a'];
+  function sizeFx() { var d = Math.min(window.devicePixelRatio || 1, 2); FW = innerWidth; FH = innerHeight; fx.width = FW * d; fx.height = FH * d; fctx.setTransform(d, 0, 0, d, 0, 0); }
+  sizeFx();
+  function make(kind, x, y, vx, vy) {
+    var k = kind === 'mix' ? ['petal', 'heart', 'conf'][(Math.random() * 3) | 0] : kind;
+    return { k: k, x: x, y: y, vx: vx, vy: vy, r: 5 + Math.random() * 9, a: Math.random() * 6.28, va: (Math.random() - .5) * .08, sw: Math.random() * 6.28, c: cols[(Math.random() * cols.length) | 0], g: 0.02 };
+  }
+  function spawn(n, kind) {
+    if (reduce) n = Math.min(n, 20);
+    for (var i = 0; i < n; i++) parts.push(make(kind, Math.random() * FW, -20 - Math.random() * FH * .6, (Math.random() - .5) * .6, .8 + Math.random() * 1.4));
+    run();
+  }
+  function burst(x, y, n) {
+    for (var i = 0; i < n; i++) { var ang = Math.random() * 6.28, sp = 2 + Math.random() * 4; var p = make('mix', x, y, Math.cos(ang) * sp, Math.sin(ang) * sp - 2); p.g = 0.12; parts.push(p); }
+    run();
+  }
+  function run() { if (!running) { running = true; requestAnimationFrame(frame); } }
+  window.__fxBurst = function (x, y, n) { burst(x, y, n); };
+  function burstSpark(x, y) {
+    var col = cols[(Math.random() * cols.length) | 0], m = reduce ? 30 : 80;
+    for (var i = 0; i < m; i++) {
+      var ang = i / m * 6.283 + Math.random() * .05, sp = 1.4 + Math.random() * 3.6;
+      parts.push({ k: 'spark', x: x, y: y, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, life: 1, c: Math.random() < .3 ? '#fff3d6' : col, r: 1.5 + Math.random() * 1.5 });
+    }
+    run();
+  }
+  function fireworks() {
+    var n = reduce ? 2 : 8;
+    for (var i = 0; i < n; i++) (function (i) {
+      setTimeout(function () {
+        burstSpark(FW * (.15 + Math.random() * .7), FH * (.12 + Math.random() * .35));
+        var a = ac(); if (a && a.state === 'running') pluck(N.C5 / 2, a.currentTime, .05);
+      }, i * 380);
+    })(i);
+  }
+  var lastTrail = 0;
+  document.addEventListener('pointermove', function (e) {
+    if (reduce || document.body.classList.contains('locked')) return;
+    var now = performance.now(); if (now - lastTrail < 28) return; lastTrail = now;
+    parts.push({ k: 'spark', trail: 1, x: e.clientX, y: e.clientY, vx: (Math.random() - .5) * .8, vy: -.4 - Math.random() * .6, life: .8,
+      c: Math.random() < .5 ? '#d8b36a' : '#eaa3ac', r: 1.4 + Math.random() * 1.6 });
+    run();
+  }, { passive: true });
+  function shape(p) {
+    fctx.save(); fctx.translate(p.x, p.y); fctx.rotate(p.a); fctx.fillStyle = p.c;
+    if (p.k === 'heart') {
+      var s = p.r / 10; fctx.scale(s, s); fctx.beginPath();
+      fctx.moveTo(0, 4); fctx.bezierCurveTo(-10, -4, -6, -12, 0, -6); fctx.bezierCurveTo(6, -12, 10, -4, 0, 4); fctx.fill();
+    } else if (p.k === 'conf') {
+      fctx.scale(1, Math.abs(Math.sin(p.sw))); fctx.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2);
+    } else {
+      fctx.scale(1, .55 + .45 * Math.abs(Math.sin(p.sw))); fctx.beginPath();
+      fctx.moveTo(0, -p.r); fctx.bezierCurveTo(p.r * .9, -p.r * .6, p.r * .7, p.r * .7, 0, p.r); fctx.bezierCurveTo(-p.r * .7, p.r * .7, -p.r * .9, -p.r * .6, 0, -p.r); fctx.fill();
+    }
+    fctx.restore();
+  }
+  function frame() {
+    fctx.clearRect(0, 0, FW, FH);
+    for (var i = parts.length - 1; i >= 0; i--) {
+      var p = parts[i];
+      if (p.k === 'spark') {
+        p.vx *= .97; p.vy = p.vy * .97 + .035; p.x += p.vx; p.y += p.vy;
+        p.life -= p.trail ? .025 : .011;
+        if (p.life <= 0) { parts.splice(i, 1); continue; }
+        fctx.globalAlpha = p.life; fctx.fillStyle = p.c;
+        fctx.beginPath(); fctx.arc(p.x, p.y, p.r * (p.trail ? p.life + .3 : 1), 0, 6.283); fctx.fill();
+        fctx.globalAlpha = 1;
+        continue;
+      }
+      p.sw += .04;
+      p.vy = Math.min(p.vy + p.g, 2.4); p.vx *= .99;
+      p.x += p.vx + Math.sin(p.sw) * .5; p.y += p.vy; p.a += p.va;
+      if (p.y > FH + 30) { parts.splice(i, 1); continue; }
+      shape(p);
+    }
+    if (parts.length) requestAnimationFrame(frame); else { running = false; fctx.clearRect(0, 0, FW, FH); }
+  }
 })();
 </script>
+<script>
+/* ================= OUR BOOK =================
+   FIREBASE_CONFIG = null  → demo mode: entries live only in this browser.
+   Paste your Firebase config object to make the book shared between the two of you. */
+var FIREBASE_CONFIG = null;
+var ALLOWED_EMAILS = []; // shown in hints only; real protection is in the Firestore rules
+
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var START = new Date(2025, 10, 3);
+  var TABS = {
+    chronicle: { desc: 'Әр жыл — жаңа тарау. Жылдық сайын жаңасы ашылады.', add: 'Жаңа естелік', empty: ['Тарау әлі жазылмаған', 'Осы жылдың алғашқы естелігін қос.'] },
+    firsts: { desc: 'Бірінші рет болған нәрселеріміз, ретімен.', add: 'Бірінші рет', empty: ['Әзірге бос', 'Алғашқы кездесу, алғашқы сапар, алғашқы Жаңа жыл…'] },
+    dreams: { desc: 'Бірге істегіміз келетін нәрселер. Орындалса, белгілейміз.', add: 'Жаңа арман', empty: ['Әзірге арман жоқ', 'Біріншісін жаз. Мысалы, айтып жүрген сапарымызды.'] },
+    capsules: { desc: 'Болашаққа хат. Белгіленген күнге дейін ашылмайды.', add: 'Болашаққа хат', empty: ['Капсула бос', 'Келесі жылдықта ашылатын хат жаз.'] }
+  };
+  var current = 'chronicle', data = { chronicle: [], firsts: [], dreams: [], capsules: [] };
+  var me = null, backend = null;
+
+  /* ---------- helpers ---------- */
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function parseD(s) { if (!s) return null; var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  var KZM = ['қаңтар', 'ақпан', 'наурыз', 'сәуір', 'мамыр', 'маусым', 'шілде', 'тамыз', 'қыркүйек', 'қазан', 'қараша', 'желтоқсан'];
+  function fmt(s) { var d = parseD(s); return d ? d.getFullYear() + ' ж. ' + d.getDate() + ' ' + KZM[d.getMonth()] : ''; }
+  function plural(n, a, b, c) { var x = Math.abs(n) % 100, y = x % 10; if (x > 10 && x < 20) return c; if (y > 1 && y < 5) return b; if (y === 1) return a; return c; }
+  function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+  function yearOf(s) {
+    var d = parseD(s); if (!d || d < START) return 0;
+    var y = d.getFullYear() - 2025; if (d < new Date(d.getFullYear(), 10, 3)) y -= 1; return y + 1;
+  }
+  function yearRange(n) { return '03.11.' + (2024 + n) + ' — 03.11.' + (2025 + n); }
+  function byDate(a, b) { return (a.date || '').localeCompare(b.date || ''); }
+
+  function shrinkPhoto(file, maxSide, quality) {
+    return new Promise(function (res, rej) {
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function () {
+        var s = Math.min(1, maxSide / Math.max(img.width, img.height));
+        var c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        var q = quality, out = c.toDataURL('image/jpeg', q);
+        while (out.length > 700000 && q > 0.35) { q -= 0.1; out = c.toDataURL('image/jpeg', q); }
+        res(out);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); rej(new Error('Суретті оқу мүмкін болмады. Басқасын көріңіз.')); };
+      img.src = url;
+    });
+  }
+
+  /* ---------- backends ---------- */
+  function localBackend() {
+    var KEY = 'ourBook.kz1';
+    function load() { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } }
+    function save(all) { try { localStorage.setItem(KEY, JSON.stringify(all)); return true; } catch (e) { return false; } }
+    var all = load();
+    if (!all) {
+      all = {
+        chronicle: [
+          { id: 'd1', date: '2025-11-03', title: 'Театр, биік және гүлдер', text: 'Саған сөз салған кеш. «Махаббат қызық мол жылдар», кейін қала шамдары.', author: 'Үлгі' },
+          { id: 'd2', date: '2025-12-31', title: 'Алғашқы Жаңа жылымыз', text: 'Жазба үлгісі: оны қалай қарсы алғаныңды жаз.', author: 'Үлгі' }
+        ],
+        firsts: [
+          { id: 'f1', date: '2025-11-03', title: 'Сөз салған күн', text: 'Театр, «Махаббат қызық мол жылдар».', author: 'Үлгі' },
+          { id: 'f2', date: '2025-11-03', title: 'Алғашқы гүл шоғы', text: '', author: 'Үлгі' }
+        ],
+        dreams: [
+          { id: 'w1', title: 'Сол театрға тағы бару', text: '', done: false, author: 'Үлгі' },
+          { id: 'w2', title: 'Тауда таң қарсы алу', text: '', done: false, author: 'Үлгі' },
+          { id: 'w3', title: 'Екеуміздің алғашқы саяхатымыз', text: '', done: false, author: 'Үлгі' }
+        ],
+        capsules: [
+          { id: 'c1', title: 'Екінші жылдықта ашу', text: 'Болашаққа хат үлгісі.', openAt: '2027-11-03', author: 'Үлгі' },
+          { id: 'c2', title: 'Ашылған хат', text: 'Күні келгенде капсула осылай көрінеді.', openAt: '2026-01-01', author: 'Үлгі' }
+        ]
+      };
+      save(all);
+    }
+    function emit() { Object.keys(all).forEach(function (k) { data[k] = all[k].slice(); }); render(); }
+    return {
+      start: function () { emit(); },
+      add: function (coll, obj) { obj.id = 'l' + Date.now(); all[coll].push(obj); if (!save(all)) { all[coll].pop(); return Promise.reject(new Error('Браузер жады толы. Кішірек сурет көріңіз.')); } emit(); return Promise.resolve(); },
+      update: function (coll, id, patch) { all[coll].forEach(function (x) { if (x.id === id) Object.assign(x, patch); }); save(all); emit(); return Promise.resolve(); },
+      remove: function (coll, id) { all[coll] = all[coll].filter(function (x) { return x.id !== id; }); save(all); emit(); return Promise.resolve(); }
+    };
+  }
+
+  function loadScript(src) { return new Promise(function (res, rej) { var s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = function () { rej(new Error('Жүктелмеді: ' + src)); }; document.head.appendChild(s); }); }
+
+  function firebaseBackend() {
+    var V = '10.12.2', base = 'https://www.gstatic.com/firebasejs/' + V + '/';
+    var db, auth, unsubs = [];
+    function listen() {
+      unsubs.forEach(function (u) { u(); }); unsubs = [];
+      Object.keys(data).forEach(function (coll) {
+        unsubs.push(db.collection(coll).onSnapshot(function (snap) {
+          data[coll] = snap.docs.map(function (d) { var o = d.data(); o.id = d.id; return o; });
+          render();
+        }, function (err) {
+          data[coll] = [];
+          authBar('denied', err);
+          render();
+        }));
+      });
+    }
+    return {
+      start: function () {
+        authBar('loading');
+        loadScript(base + 'firebase-app-compat.js')
+          .then(function () { return Promise.all([loadScript(base + 'firebase-auth-compat.js'), loadScript(base + 'firebase-firestore-compat.js')]); })
+          .then(function () {
+            firebase.initializeApp(FIREBASE_CONFIG);
+            auth = firebase.auth(); db = firebase.firestore();
+            auth.onAuthStateChanged(function (u) {
+              me = u;
+              if (u) { authBar('in'); listen(); }
+              else { unsubs.forEach(function (x) { x(); }); unsubs = []; Object.keys(data).forEach(function (k) { data[k] = []; }); authBar('out'); render(); }
+            });
+          })
+          .catch(function (e) { authBar('error', e); });
+      },
+      signIn: function () {
+        var p = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(p).catch(function (e) {
+          if (e && (e.code === 'auth/popup-blocked' || e.code === 'auth/operation-not-supported-in-this-environment')) auth.signInWithRedirect(p);
+          else authBar('error', e);
+        });
+      },
+      signOut: function () { auth.signOut(); },
+      add: function (coll, obj) { obj.createdAt = firebase.firestore.FieldValue.serverTimestamp(); return db.collection(coll).add(obj); },
+      update: function (coll, id, patch) { return db.collection(coll).doc(id).update(patch); },
+      remove: function (coll, id) { return db.collection(coll).doc(id).delete(); }
+    };
+  }
+
+  /* ---------- auth bar ---------- */
+  function authBar(state, err) {
+    var bar = $('authBar'); bar.textContent = '';
+    if (state === 'demo') {
+      bar.appendChild(el('span', 'demo-note', 'Үлгі: жазбалар тек осы құрылғыда сақталады. Базаны қосқаннан кейін кітап екеуміз үшін ортақ болады.'));
+      return;
+    }
+    if (state === 'loading') { bar.appendChild(el('span', null, 'Кітап ашылуда…')); return; }
+    if (state === 'out') {
+      bar.appendChild(el('span', null, 'Кітап жабық. Оқу және жазу үшін кіріңіз.'));
+      var b = el('button', 'btn small', 'Google арқылы кіру'); b.type = 'button'; b.onclick = function () { backend.signIn(); };
+      bar.appendChild(b); return;
+    }
+    if (state === 'in') {
+      var s = el('span'); s.appendChild(document.createTextNode('Сіз кірдіңіз: ')); s.appendChild(el('span', 'who', me.displayName || me.email));
+      bar.appendChild(s);
+      var o = el('button', 'del', 'Шығу'); o.type = 'button'; o.style.color = 'var(--muted)'; o.onclick = function () { backend.signOut(); };
+      bar.appendChild(o); return;
+    }
+    if (state === 'denied') {
+      bar.appendChild(el('span', null, (me ? me.email : '') + ' аккаунтының кітапқа рұқсаты жоқ. Базаның ережелеріне қосылған поштамен кіріңіз.'));
+      var x = el('button', 'del', 'Аккаунтты ауыстыру'); x.type = 'button'; x.style.color = 'var(--gold)'; x.onclick = function () { backend.signOut(); };
+      bar.appendChild(x); return;
+    }
+    if (state === 'error') bar.appendChild(el('span', null, 'Кітапқа қосылу мүмкін болмады: ' + ((err && err.message) || 'желі қатесі') + '. Бетті жаңартыңыз.'));
+  }
+  function canWrite() { return !FIREBASE_CONFIG || !!me; }
+
+  /* ---------- render ---------- */
+  function delBtn(coll, id) {
+    var b = el('button', 'del', 'Өшіру'); b.type = 'button';
+    b.onclick = function () {
+      if (!b.classList.contains('confirm')) { b.classList.add('confirm'); b.textContent = 'Өшірейін бе?'; setTimeout(function () { b.classList.remove('confirm'); b.textContent = 'Өшіру'; }, 3500); return; }
+      backend.remove(coll, id);
+    };
+    return b;
+  }
+  function entryCard(coll, x, metaText) {
+    var c = el('article', 'entry' + (x.photo ? ' has-photo' : ''));
+    if (x.photo) { var im = el('img'); im.src = x.photo; im.alt = x.title || ''; im.loading = 'lazy'; c.appendChild(im); }
+    var b = el('div', 'body');
+    b.appendChild(el('div', 'meta', metaText));
+    b.appendChild(el('h4', null, x.title));
+    if (x.text) b.appendChild(el('p', null, x.text));
+    var f = el('div', 'foot-row'); f.appendChild(el('span', null, x.author ? '✎ ' + x.author : ''));
+    if (canWrite()) f.appendChild(delBtn(coll, x.id));
+    b.appendChild(f); c.appendChild(b);
+    return c;
+  }
+  function empty(t) { var e = el('div', 'empty'); e.appendChild(el('b', null, TABS[t].empty[0])); e.appendChild(document.createTextNode(TABS[t].empty[1])); return e; }
+
+  function render() {
+    var list = $('bookList'); list.textContent = '';
+    $('tabDesc').textContent = TABS[current].desc;
+    $('addBtn').hidden = !canWrite();
+    if (FIREBASE_CONFIG && !me) { list.appendChild(empty(current)); return; }
+    var items = data[current].slice();
+
+    if (current === 'chronicle') {
+      if (!items.length) { list.appendChild(empty(current)); return; }
+      items.sort(byDate);
+      var groups = {};
+      items.forEach(function (x) { var y = yearOf(x.date); (groups[y] = groups[y] || []).push(x); });
+      Object.keys(groups).map(Number).sort(function (a, b) { return b - a; }).forEach(function (y) {
+        var h = el('div', 'year-head');
+        h.appendChild(el('h3', null, y === 0 ? 'Бізге дейін' : y + '-жыл'));
+        if (y > 0) h.appendChild(el('span', null, yearRange(y)));
+        list.appendChild(h);
+        groups[y].forEach(function (x) { list.appendChild(entryCard('chronicle', x, fmt(x.date))); });
+      });
+      return;
+    }
+    if (current === 'firsts') {
+      if (!items.length) { list.appendChild(empty(current)); return; }
+      items.sort(byDate);
+      var tl = el('div', 'timeline');
+      items.forEach(function (x) { tl.appendChild(entryCard('firsts', x, 'Бірінші рет · ' + fmt(x.date))); });
+      list.appendChild(tl); return;
+    }
+    if (current === 'dreams') {
+      if (!items.length) { list.appendChild(empty(current)); return; }
+      var done = items.filter(function (x) { return x.done; }).length;
+      list.appendChild(el('div', 'dream-stats', 'Орындалды: ' + done + ' / ' + items.length));
+      items.sort(function (a, b) { return (a.done ? 1 : 0) - (b.done ? 1 : 0); });
+      var g = el('div', 'dreams');
+      items.forEach(function (x) {
+        var d = el('article', 'dream' + (x.done ? ' done' : ''));
+        var ch = el('button', 'check', x.done ? '✓' : ''); ch.type = 'button';
+        ch.setAttribute('aria-label', x.done ? 'Орындалмады деп белгілеу' : 'Орындалды деп белгілеу');
+        ch.disabled = !canWrite();
+        ch.onclick = function () {
+          var nd = !x.done;
+          backend.update('dreams', x.id, { done: nd, doneDate: nd ? iso(today()) : '' });
+          if (nd && window.__fxBurst) { var r = ch.getBoundingClientRect(); window.__fxBurst(r.left + 13, r.top + 13, 24); }
+        };
+        d.appendChild(ch);
+        d.appendChild(el('h4', null, x.title));
+        if (x.text) d.appendChild(el('p', null, x.text));
+        if (x.done) d.appendChild(el('span', 'done-stamp', 'Орындалды · ' + fmt(x.doneDate)));
+        var row = el('div', 'row'); row.appendChild(el('span', null, ''));
+        if (canWrite()) row.appendChild(delBtn('dreams', x.id));
+        d.appendChild(row);
+        g.appendChild(d);
+      });
+      list.appendChild(g); return;
+    }
+    if (current === 'capsules') {
+      if (!items.length) { list.appendChild(empty(current)); return; }
+      items.sort(function (a, b) { return (a.openAt || '').localeCompare(b.openAt || ''); });
+      var gc = el('div', 'capsules'), t0 = today();
+      items.forEach(function (x) {
+        var od = parseD(x.openAt), locked = od && od > t0;
+        var c = el('article', 'capsule ' + (locked ? 'locked' : 'open'));
+        if (locked) {
+          c.innerHTML = '<svg class="lock-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+          c.appendChild(el('div', 'meta', fmt(x.openAt) + ' ашылады'));
+          c.appendChild(el('h4', null, x.title));
+          var left = Math.round((od - t0) / 864e5);
+          c.appendChild(el('div', 'left', left + ' күннен кейін'));
+        } else {
+          c.appendChild(el('div', 'meta', 'Ашылды · ' + fmt(x.openAt)));
+          c.appendChild(el('h4', null, x.title));
+          c.appendChild(el('p', 'text', x.text));
+        }
+        var f = el('div', 'foot-row'); f.appendChild(el('span', null, x.author ? '✎ ' + x.author : ''));
+        if (canWrite()) f.appendChild(delBtn('capsules', x.id));
+        c.appendChild(f);
+        gc.appendChild(c);
+      });
+      list.appendChild(gc);
+    }
+  }
+
+  /* ---------- tabs ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.tabs button'), function (b) {
+    b.addEventListener('click', function () {
+      current = b.getAttribute('data-tab');
+      document.querySelectorAll('.tabs button').forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+      render();
+    });
+  });
+
+  /* ---------- add form ---------- */
+  var photoData = null;
+  function field(label, input) { var f = el('div', 'field'); var l = el('label', null, label); l.htmlFor = input.id; f.appendChild(l); f.appendChild(input); return f; }
+  function inp(id, type, ph) { var i = el(type === 'textarea' ? 'textarea' : 'input'); i.id = id; if (type !== 'textarea') i.type = type; if (ph) i.placeholder = ph; return i; }
+  function openSheet() {
+    photoData = null;
+    var F = $('sheetFields'); F.textContent = ''; $('formErr').textContent = '';
+    $('sheetTitle').textContent = TABS[current].add;
+    if (current === 'chronicle' || current === 'firsts') {
+      var d = inp('fDate', 'date'); d.value = iso(today());
+      F.appendChild(field('Қашан', d));
+      F.appendChild(field(current === 'firsts' ? 'Алғаш рет…' : 'Не болды', inp('fTitle', 'text', current === 'firsts' ? 'Мысалы: тауға бардық' : 'Қысқаша, бір-екі сөзбен')));
+      F.appendChild(field('Толығырақ жаз', inp('fText', 'textarea', 'Не есте қалды, кім не айтты, ауа райы қандай болды…')));
+    }
+    if (current === 'dreams') {
+      F.appendChild(field('Арман', inp('fTitle', 'text', 'Мысалы: екеуміз теңізді көру')));
+      F.appendChild(field('Толығырақ', inp('fText', 'textarea', 'Міндетті емес')));
+    }
+    if (current === 'capsules') {
+      F.appendChild(field('Атауы', inp('fTitle', 'text', 'Мысалы: бесінші жылдықта ашу')));
+      F.appendChild(field('Хат', inp('fText', 'textarea', 'Болашақтағы бізге не айтқың келеді?')));
+      var o = inp('fOpen', 'date'); var tm = today(); tm.setDate(tm.getDate() + 1); o.min = iso(tm);
+      o.value = iso(new Date(today() < new Date(today().getFullYear(), 10, 3) ? today().getFullYear() : today().getFullYear() + 1, 10, 3));
+      var wrap = field('Қашан ашу', o);
+      var chips = el('div', 'chips');
+      [['Келесі жылдық', 1], ['3 жылдан кейін', 3], ['5 жылдан кейін', 5], ['10 жылдан кейін', 10]].forEach(function (c) {
+        var b = el('button', null, c[0]); b.type = 'button';
+        b.onclick = function () {
+          var t = today(), ny = t.getFullYear() + (t < new Date(t.getFullYear(), 10, 3) ? c[1] - 1 : c[1]);
+          o.value = iso(new Date(ny, 10, 3));
+        };
+        chips.appendChild(b);
+      });
+      wrap.appendChild(chips);
+      F.appendChild(wrap);
+    }
+    if (current !== 'capsules') {
+      var pp = el('div', 'field');
+      pp.appendChild(el('label', null, 'Сурет'));
+      var row = el('div', 'photo-pick');
+      var pl = el('label', 'pick', 'Сурет таңдау'); var fi = el('input'); fi.type = 'file'; fi.accept = 'image/*'; fi.id = 'fPhoto'; pl.htmlFor = 'fPhoto';
+      var prev = el('img'); prev.hidden = true; prev.alt = '';
+      fi.onchange = function () {
+        if (!fi.files[0]) return;
+        pl.textContent = 'Өңделуде…';
+        shrinkPhoto(fi.files[0], FIREBASE_CONFIG ? 1400 : 900, FIREBASE_CONFIG ? .78 : .65)
+          .then(function (u) { photoData = u; prev.src = u; prev.hidden = false; pl.textContent = 'Басқа сурет'; })
+          .catch(function (e) { $('formErr').textContent = e.message; pl.textContent = 'Сурет таңдау'; });
+      };
+      row.appendChild(pl); row.appendChild(fi); row.appendChild(prev);
+      pp.appendChild(row); F.appendChild(pp);
+    }
+    $('sheet').hidden = false;
+    setTimeout(function () { var f = $('fTitle'); if (f) f.focus(); }, 50);
+  }
+  function closeSheet() { $('sheet').hidden = true; $('addBtn').focus(); }
+  $('addBtn').addEventListener('click', openSheet);
+  $('sheetCancel').addEventListener('click', closeSheet);
+  $('sheet').addEventListener('click', function (e) { if (e.target === this) closeSheet(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('sheet').hidden) closeSheet(); });
+  $('sheetForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var title = ($('fTitle').value || '').trim(), text = ($('fText') ? $('fText').value : '').trim();
+    var err = $('formErr');
+    if (!title) { err.textContent = 'Кем дегенде атауын жазыңыз.'; $('fTitle').focus(); return; }
+    var obj = { title: title.slice(0, 140), text: text.slice(0, 5000), author: me ? (me.displayName || me.email).split(' ')[0] : 'Біз' };
+    if (current === 'chronicle' || current === 'firsts') { obj.date = $('fDate').value; if (!obj.date) { err.textContent = 'Күнін таңдаңыз.'; return; } }
+    if (current === 'dreams') { obj.done = false; obj.doneDate = ''; }
+    if (current === 'capsules') {
+      obj.openAt = $('fOpen').value;
+      if (!text) { err.textContent = 'Хаттың өзін жазыңыз.'; return; }
+      if (!obj.openAt || parseD(obj.openAt) <= today()) { err.textContent = 'Ашылу күні болашақта болуы керек.'; return; }
+    }
+    if (photoData) obj.photo = photoData;
+    $('sheetSave').disabled = true; $('sheetSave').textContent = 'Сақталуда…';
+    backend.add(current, obj).then(function () {
+      closeSheet();
+      if (window.__fxBurst) window.__fxBurst(innerWidth / 2, innerHeight / 2, 30);
+    }).catch(function (e2) {
+      err.textContent = (e2 && e2.message) || 'Сақтау мүмкін болмады. Қайталап көріңіз.';
+    }).then(function () { $('sheetSave').disabled = false; $('sheetSave').textContent = 'Сақтау'; });
+  });
+
+  /* ---------- start ---------- */
+  if (FIREBASE_CONFIG) { backend = firebaseBackend(); }
+  else { backend = localBackend(); authBar('demo'); }
+  render();
+  backend.start();
+})();
+</script>
+
 
 </body>
 </html>
