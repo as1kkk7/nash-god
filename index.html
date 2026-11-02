@@ -722,6 +722,7 @@ button { font: inherit; }
   </div>
 </section>
 
+<audio id="song" src="song.mp3" preload="auto" loop playsinline></audio>
 <button id="music" type="button" aria-label="Біздің әнді қосу" hidden></button>
 <span id="musicTip" hidden>Біздің ән</span>
 
@@ -783,11 +784,28 @@ button { font: inherit; }
     step = (step + 8) % tune.length;
     musicTimer = setTimeout(playLoop, beat * 8 * 1000 - 20);
   }
+  /* ---- our song (song.mp3 next to index.html); the music box is only a fallback ---- */
+  var song = $('song'), songOk = false, songFade = null;
+  song.addEventListener('canplay', function () { songOk = true; });
+  song.addEventListener('loadedmetadata', function () { songOk = true; });
+  song.addEventListener('error', function () { songOk = false; });
+  function fadeSong(to, ms, done) {
+    clearInterval(songFade); var from = song.volume, t0 = Date.now();
+    songFade = setInterval(function () { var k = Math.min(1, (Date.now() - t0) / ms); song.volume = from + (to - from) * k; if (k >= 1) { clearInterval(songFade); if (done) done(); } }, 50);
+  }
+  function primeSong() { /* unlock playback on iPhone during the first tap */
+    if (song.__primed) return; song.__primed = true;
+    try { song.muted = true; var p = song.play(); if (p && p.then) p.then(function () { song.pause(); song.currentTime = 0; song.muted = false; }).catch(function () { song.muted = false; }); else { song.pause(); song.muted = false; } } catch (e) { song.muted = false; }
+  }
+  function playSong() {
+    try { song.muted = false; song.volume = 0; var p = song.play(); if (p && p.catch) p.catch(function () {}); fadeSong(0.85, 2500); return true; } catch (e) { return false; }
+  }
   $('music').addEventListener('click', function () {
     musicOn = !musicOn;
     this.classList.toggle('on', musicOn);
     this.setAttribute('aria-label', musicOn ? 'Музыканы өшіру' : 'Біздің әнді қосу');
     $('musicTip').hidden = true;
+    if (songOk) { if (musicOn) playSong(); else fadeSong(0, 600, function () { song.pause(); }); return; }
     if (musicOn) { var a = ac(); if (a && a.state === 'suspended') a.resume(); playLoop(); } else clearTimeout(musicTimer);
   });
 
@@ -830,6 +848,7 @@ button { font: inherit; }
 
   /* ---- curtain ---- */
   $('startBtn').addEventListener('click', function () {
+    primeSong();
     var a = ac();
     if (a) { if (a.state === 'suspended') a.resume(); var t = a.currentTime + 0.05; bell(t); bell(t + 0.7); bell(t + 1.4); }
     setTimeout(function () {
@@ -950,6 +969,7 @@ button { font: inherit; }
   var titlesDone = false, titleTimer = null;
   function startMusic() {
     if (musicOn) return;
+    if (songOk) { musicOn = true; $('music').classList.add('on'); $('music').setAttribute('aria-label', 'Музыканы өшіру'); playSong(); return; }
     var a = ac(); if (!a) return;
     if (a.state === 'suspended') a.resume();
     musicOn = true; $('music').classList.add('on'); $('music').setAttribute('aria-label', 'Музыканы өшіру');
