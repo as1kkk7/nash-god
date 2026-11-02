@@ -437,6 +437,9 @@ button { font: inherit; }
 .plan-wrap h2 { font-size: clamp(40px, 10vw, 60px); line-height: 1; }
 .plan-sub { margin: 0; color: var(--muted); max-width: 46ch; }
 .plan-foot { margin-top: 8px; }
+.plan-again { margin-top: 34px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); }
+.plan-again .replay-actions { margin-top: 0; }
+.plan-again-t { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
 .plan-note { margin: 0; font-family: var(--hand); font-size: 24px; color: var(--rose); }
 .plan-open { margin: 0; font-family: var(--hand); font-size: 28px; color: var(--gold); }
 .dacts { display: grid; gap: 12px; margin-top: 8px; }
@@ -555,6 +558,20 @@ button { font: inherit; }
     <p class="plan-sub">Бүкіл жоспар осында. Кафеге жеткенде сурет қосасың, сонда сайттың қалғаны ашылады.</p>
     <div class="dacts" id="planActs"></div>
     <div class="plan-foot" id="planFoot"></div>
+    <div class="plan-again">
+      <p class="plan-again-t">Ол түнді қайта көргің келсе</p>
+      <div class="replay-actions">
+        <button class="btn" id="planReplay" type="button">▶ Басынан көру</button>
+        <button class="ghost" id="planResetBtn" type="button">↺ Бәрін қайта бастау</button>
+      </div>
+      <div class="reset-confirm" id="planConfirm" hidden>
+        <p>Шынымен бәрін басынан бастайсың ба? Таймер, сұрақтар, титрлер қайта басталады, сосын осы жоспарға қайта келесің.</p>
+        <div class="replay-actions">
+          <button class="btn" id="planResetYes" type="button">Иә, басынан</button>
+          <button class="ghost" id="planResetNo" type="button">Болдырмау</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -835,7 +852,7 @@ button { font: inherit; }
     $('cdTitle').textContent = 'Міне, уақыт келді!';
     $('cdSub').textContent = 'Бүгін 3 қараша. Дәл бір жыл бұрын бәрі басталған';
     spawn(60, 'heart'); fireworks();
-    setTimeout(function () { c.hidden = true; $('plaque').hidden = false; $('startBtn').focus(); }, reduce ? 400 : 3000);
+    setTimeout(function () { c.hidden = true; $('plaque').hidden = false; $('startBtn').focus(); if (replay) setTimeout(function () { if (replay && !$('plaque').hidden) $('startBtn').click(); }, 1800); }, reduce ? 400 : 3000);
   }
 
   /* ---- curtain ---- */
@@ -1020,6 +1037,7 @@ button { font: inherit; }
     titlesDone = true; clearTimeout(titleTimer);
     $('gate').classList.add('gone');
     if (!replay && stage === 'night') setStage('plan');
+    if (replay && stage !== 'site') replay = false;
     openPlan();
   }
   $('skip').addEventListener('click', afterTitles);
@@ -1144,11 +1162,21 @@ button { font: inherit; }
     $('lock').classList.remove('out'); $('titles').hidden = true; $('tLine').className = 't-line'; $('tLine').textContent = '';
     qi = 0; qBusy = false; showQuestion();
   }
-  $('replayBtn').addEventListener('click', function () {
+  function startReplay() {
     replay = true;
+    primeSong(); var a0 = ac(); if (a0 && a0.state === 'suspended') a0.resume();
+    $('plan').hidden = true;
     document.body.classList.add('locked');
     resetGateUI();
     startCountdown(new Date(Date.now() + 6000), 'Сол түні осылай болған');
+  }
+  $('replayBtn').addEventListener('click', startReplay);
+  $('planReplay').addEventListener('click', startReplay);
+  $('planResetBtn').addEventListener('click', function () { $('planConfirm').hidden = false; $('planResetBtn').hidden = true; $('planResetYes').focus(); });
+  $('planResetNo').addEventListener('click', function () { $('planConfirm').hidden = true; $('planResetBtn').hidden = false; });
+  $('planResetYes').addEventListener('click', function () {
+    try { [STAGE_KEY, PH_KEY, ARR_KEY].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
+    location.reload();
   });
   $('resetBtn').addEventListener('click', function () { $('resetConfirm').hidden = false; $('resetBtn').hidden = true; $('resetYes').focus(); });
   $('resetNo').addEventListener('click', function () { $('resetConfirm').hidden = true; $('resetBtn').hidden = false; });
