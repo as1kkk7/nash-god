@@ -4,8 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d0f1f">
-<meta property="og:title" content="Тек саған арналған спектакль">
-<meta property="og:description" content="03.11.2025 → 03.11.2026">
+<meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9D%A4%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} img{max-width:100%}</style>
 <title>Тек саған арналған спектакль</title>
@@ -472,7 +471,7 @@ button { font: inherit; }
 .reset-confirm { margin-top: 18px; border: 1px solid var(--rose); border-radius: 10px; padding: 18px; background: rgba(122,34,51,.25); }
 .reset-confirm p { margin: 0; }
 .reset-confirm .replay-actions { margin-top: 14px; }
-.coupon.wide { grid-column: 1 / -1; background: linear-gradient(120deg, var(--paper), #f7dfe2); }
+.coupon.wide { background: linear-gradient(120deg, var(--paper), #f7dfe2); }
 .finale { padding-block: 110px 70px; }
 
 /* photos behind the opening titles */
@@ -484,6 +483,11 @@ button { font: inherit; }
 .t-shade { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(13,15,31,.35), rgba(13,15,31,.8)); }
 .t-line { position: relative; z-index: 3; text-shadow: 0 2px 20px rgba(0,0,0,.6); }
 .titles .skip { z-index: 3; }
+.titles { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.t-hint { position: absolute; z-index: 3; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + 92px); margin: 0; text-align: center;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: rgba(241,232,218,.75); opacity: 0; transition: opacity .8s ease; }
+.t-hint.show { opacity: 1; animation: hintPulse 2.4s ease-in-out infinite; }
+@keyframes hintPulse { 50% { opacity: .45; } }
 </style>
 </head>
 <body>
@@ -501,12 +505,14 @@ button { font: inherit; }
     </form>
     <div class="choices" id="choices" hidden></div>
     <p class="msg" id="lockMsg"></p>
+    <button class="demo-skip" id="qSkip" type="button">Пропустить вопросы (временно)</button>
     <span class="demo-note">В примере: 03.11.2025 · Медеу · Есіміңіз кім болады? · кино · Қайтадан · театр · Махаббат қызық мол жылдар · любой</span>
   </div>
   <div class="titles" id="titles" hidden>
     <div class="t-photos" id="tPhotos" aria-hidden="true"></div>
     <div class="t-shade" aria-hidden="true"></div>
     <p class="t-line" id="tLine"></p>
+    <p class="t-hint" id="tHint" aria-live="polite"></p>
     <button class="ghost skip" id="skip" type="button">Өткізіп жіберу</button>
   </div>
   <div class="curtain l"></div>
@@ -514,13 +520,13 @@ button { font: inherit; }
   <div class="valance"></div>
   <div class="plaque" id="plaque">
     <p class="eyebrow">03.11.2025 · Премьера</p>
-    <h1>Тек саған арналған спектакль</h1>
+    <h1>Саған сезім білдірген түн стиліндегі спектакль</h1>
     <p>Дыбысты қосып, жайғасып ал</p>
-    <button class="btn" id="startBtn" type="button">Шымылдықты аш</button>
+    <button class="btn" id="startBtn" type="button">Бастайық</button>
   </div>
   <div class="countdown" id="countdown" hidden>
     <p class="eyebrow">Тағы аздап қалды</p>
-    <h1 id="cdTitle">Жаным, сәл күте тұршы</h1>
+    <h1 id="cdTitle">Жан, екеумізге арналған кішігірім сыйлық</h1>
     <p class="cd-sub" id="cdSub">Дәл түнгі сағат 12-де ашылады</p>
     <div class="cd-digits" role="timer" aria-live="off">
       <div class="cd-box" id="cdDaysBox" hidden><b id="cdD">0</b><span>күн</span></div>
@@ -538,7 +544,7 @@ button { font: inherit; }
   <div class="plan-wrap">
     <p class="eyebrow">3 қараша · Бүгін не істейміз</p>
     <h2 id="planTitle">Бүгінгі жоспарымыз</h2>
-    <p class="plan-sub">Бүкіл жоспар осында. Әр жерде бір сурет қосып қой. Сайттың қалғанын кешкі тамақта ашасың.</p>
+    <p class="plan-sub">Бүкіл жоспар осында. Кафеге жеткенде сурет қосасың, сонда сайттың қалғаны ашылады.</p>
     <div class="dacts" id="planActs"></div>
     <div class="plan-foot" id="planFoot"></div>
     <button class="demo-skip" id="planReset" type="button">Начать сначала (только в примере)</button>
@@ -578,7 +584,7 @@ button { font: inherit; }
 <section class="wrap section" id="ourDay">
   <p class="eyebrow">3 қараша 2026</p>
   <h2 class="section-title">Біздің күн</h2>
-  <p class="sub">Квест, тамақ, кино. Сол күнгі суреттеріміз осында тұрады.</p>
+  <p class="sub">Кафе және қол таңбамыз. Сол күнгі суреттеріміз осында тұрады.</p>
   <div class="dacts" id="dayActs"></div>
 </section>
 
@@ -607,9 +613,9 @@ button { font: inherit; }
   </div>
   <div class="letter" id="letter" hidden>
     <p class="hello">Жүрегім менің,</p>
-    <p>Бір жыл бұрын театрға екі билет алдым, қатты толқыдым. Сосын биікте тұрдық, қала жарқырап тұрды, ал мен сенің қасымда екеніңе қуанып тұрдым.</p>
+    <p>Саған алғыс білдіремін, мен сені қатты жақсы көремін. 1 жыл бұрын бұндай деңгейге жететінімізді кім білген. Ендігі тілерім: әрқашан, не болса да бірге болып, ойлаған арман-мақсаттарымызға жетіп, тек күліп, бақытты, көңілді болып жүре берейік.</p>
     <p>Осы бір жыл үшін рахмет саған. Күлкің үшін, қолдағаның үшін, шыдағаның үшін. Жақсы күнде де, қиын күнде де қасымда болғаның үшін.</p>
-    <p class="sign">Сенің Асланың</p>
+    <p class="sign">Сенің махаббатың</p>
   </div>
   <div class="voice">
     <button class="ghost" type="button" disabled>▶ Мені тыңдашы · 0:45</button>
@@ -661,11 +667,10 @@ button { font: inherit; }
   <p class="eyebrow">Купондар</p>
   <h2 class="section-title">Мерзімі бітпейді</h2>
   <div class="coupons" id="coupons">
-    <div class="coupon" data-id="c1"><span class="k">Купон № 1</span><h3>Кешкі тамақты мен істеймін</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
-    <div class="coupon" data-id="c2"><span class="k">Купон № 2</span><h3>Кезексіз құшақ</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
-    <div class="coupon" data-id="c3"><span class="k">Купон № 3</span><h3>Театрға тағы барамыз</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
-    <div class="coupon" data-id="c4"><span class="k">Купон № 4</span><h3>Фильмді сен таңдайсың</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
-    <div class="coupon wide" data-id="c5"><span class="k">Купон № 5 · басты</span><h3>Кез келген бір тілегің</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
+    <div class="coupon" data-id="c2"><span class="k">Купон № 1</span><h3>Кезексіз құшақ</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
+    <div class="coupon" data-id="c3"><span class="k">Купон № 2</span><h3>Театрға тағы барамыз</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
+    <div class="coupon" data-id="c4"><span class="k">Купон № 3</span><h3>Фильмді сен таңдайсың</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
+    <div class="coupon wide" data-id="c5"><span class="k">Купон № 4 · басты</span><h3>Кез келген бір тілегің</h3><button type="button">Қолдану</button><span class="stamp">ӨТЕЛДІ</span></div>
   </div>
 </section>
 
@@ -677,7 +682,7 @@ button { font: inherit; }
     <div class="invite-main">
       <div class="label">Екінші жыл</div>
       <h2>Тағы бір жыл бірге?</h2>
-      <p>Алда тағы театр, тау, гүл… Осы жылдың әр күнін сенімен бірге күтемін, балапаным.</p>
+      <p>Алда тағы әдемі-әсерлі күндер күтеді… Осы жылдың әр күнін сенімен бірге күтемін, балапаным.</p>
     </div>
     <div class="invite-stub"><span class="sm">Жыл</span><span class="big">II</span><span class="sm">2026–2027</span></div>
   </div>
@@ -790,7 +795,7 @@ button { font: inherit; }
   function startCountdown(target, title) {
     var c = $('countdown'); c.hidden = false; c.classList.remove('done', 'final');
     $('plaque').hidden = true;
-    $('cdTitle').textContent = title || 'Жаным, сәл күте тұршы';
+    $('cdTitle').textContent = title || 'Жан, екеумізге арналған кішігірім сыйлық';
     clearInterval(cdTimer);
     function tick() {
       var ms = target - new Date();
@@ -849,8 +854,9 @@ button { font: inherit; }
       hints: ['Жоқ 🙂 Ол жерде шымылдық болды', 'Сахна, актерлер, қойылым…', '«Т» әрпінен басталады'], yes: 'Иә, театрға. 03.11.2025' },
     { q: 'Театрда қандай қойылымды көрдік?', type: 'choice', options: ['Қыз Жібек', 'Махаббат қызық мол жылдар', 'Абай', 'Ромео мен Джульетта'], answer: 1,
       yes: 'Дәл солай. «Махаббат қызық мол жылдар»' },
-    { q: 'Мен сенің несіңді ең қатты жақсы көремін?', type: 'choice', options: ['Күлкіңді', 'Көздеріңді', 'Мінезіңді', 'Бәрін'], answer: -1,
-      yes: 'Дұрыс жауап: бәрін. Бірақ сен таптың ♥' }
+    { q: 'Сенің қай тұстарың маған ұнайды?', type: 'choice', options: ['Күлкіңді', 'Көздеріңді', 'Мінезіңді', 'Бәрін'], answer: 3, waitAll: true,
+      partial: ['Дұрыс ♥ Бірақ бұл бәрі емес…', 'Бұл да дұрыс ♥ Тағы?', 'Иә, бұл да ♥ Ал бәрі ше?'],
+      yes: 'Иә, бәрі! Сенің бәрің ұнайды ♥' }
   ];
   var qi = 0, tries = 0, qBusy = false;
   var wrongLines = ['Жоқ 🙂 Тағы ойланшы', 'Есіңе түсірші, балапаным', 'Жоқ, жаным. Тағы бір рет'];
@@ -896,10 +902,21 @@ button { font: inherit; }
   function pickChoice(i, b) {
     if (qBusy || b.classList.contains('no')) return;
     var Q = QUESTIONS[qi];
+    if (Q.waitAll && i !== Q.answer) {
+      if (b.classList.contains('yes')) return;
+      b.classList.add('yes'); $('lockMsg').textContent = Q.partial[tries % Q.partial.length]; $('lockMsg').style.color = 'var(--gold)'; tries++;
+      var ac0 = ac(); if (ac0 && ac0.state === 'running') pluck(N.E5, ac0.currentTime, .08);
+      return;
+    }
     if (Q.answer === -1 || i === Q.answer) { b.classList.add('yes'); correct(); return; }
     b.classList.add('no'); $('lockMsg').textContent = wrongLines[tries % wrongLines.length]; tries++;
     shakeEl($('choices'));
   }
+  $('qSkip').addEventListener('click', function () {
+    if (qBusy) return; qBusy = true; qi = QUESTIONS.length;
+    Array.prototype.forEach.call($('qDots').children, function (d) { d.className = 'on'; });
+    playTitles();
+  });
   $('lockForm').addEventListener('submit', function (e) {
     e.preventDefault();
     if (qBusy || replay) return;
@@ -914,9 +931,9 @@ button { font: inherit; }
   var titleLines = [
     ['small', 'Алматы · 3 қараша 2025'],
     ['', 'Театрға екі билет. «Махаббат қызық мол жылдар».'],
-    ['', 'Мен қатты толқыдым.'],
-    ['', 'Сосын биікке шықтық, бүкіл қала жарқырап тұрды.'],
-    ['', 'Саған гүл сыйладым.'],
+    ['', 'Мойындау керек, қатты қобалжыдым сол күні.'],
+    ['', 'Театрдан шығып, тамақтанып, биікке шықтық, бүкіл қала жарқырап тұрды.'],
+    ['', 'Саған гүл сыйлап, сезімімді білдірдім.'],
     ['', 'Сонда бір жылымыз басталатынын білмедік қой.'],
     ['big', 'Бұл жыл — сен туралы, жаным.']
   ];
@@ -949,22 +966,34 @@ button { font: inherit; }
     $('lock').classList.add('out');
     $('titles').hidden = false;
     startMusic();
-    var el = $('tLine'), i = 0;
+    var el = $('tLine'), i = 0, busy = false;
+    $('tHint').textContent = '';
     function next() {
-      if (titlesDone) return;
+      if (titlesDone || busy) return;
       if (i >= titleLines.length) { afterTitles(); return; }
-      el.classList.remove('show');
+      busy = true;
+      el.classList.remove('show'); $('tHint').classList.remove('show');
       titleTimer = setTimeout(function () {
         el.className = 't-line ' + titleLines[i][0];
         el.textContent = titleLines[i][1];
         showSlide(i);
         void el.offsetWidth; el.classList.add('show');
         i++;
-        titleTimer = setTimeout(next, i === titleLines.length ? 2800 : 2400);
+        var last = i === titleLines.length;
+        $('tHint').textContent = i + ' / ' + titleLines.length + (last ? '  ·  экранды бас, әрі қарай ♥' : '  ·  экранды бас ›');
+        setTimeout(function () { busy = false; $('tHint').classList.add('show'); }, reduce ? 100 : 1200);
+        if (replay) titleTimer = setTimeout(next, last ? 2800 : 2400);
       }, reduce ? 100 : 800);
     }
+    titlesNext = next;
     next();
   }
+  var titlesNext = null;
+  $('titles').addEventListener('click', function (e) { if (e.target.closest('#skip')) return; if (titlesNext && !replay) titlesNext(); });
+  document.addEventListener('keydown', function (e) {
+    if ($('titles').hidden || titlesDone || replay) return;
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); if (titlesNext) titlesNext(); }
+  });
   function afterTitles() {
     if (titlesDone) return;
     titlesDone = true; clearTimeout(titleTimer);
@@ -988,12 +1017,10 @@ button { font: inherit; }
 
   /* ================= DAY PLAN 3 NOVEMBER ================= */
   var ACTS = [
-    { id: 1, rn: 'I', title: 'Логикалық квест', det: 'Екеуміз жұмбақ шешеміз. Түнгі сұрақтар жай ғана разминка еді 😄',
-      need: 'Біткен соң сол жерден бір сурет қос.' },
-    { id: 2, rn: 'II', title: 'Тамақ', det: 'Квесттен кейін қарын ашады ғой. Орынды өзім таңдадым.',
+    { id: 1, rn: 'I', title: 'Кафе', det: 'Екеуміз кафеге барамыз. Тыныш отырып, бір жылымызды еске аламыз.',
       need: 'Жеткенде «Келдік» батырмасын бас та, сурет қос. Сосын бүкіл сайт ашылады.' },
-    { id: 3, rn: 'III', title: 'Кино', det: 'Фильмді бірге таңдаймыз. Билетті ертерек алып қоямын.',
-      need: 'Кинодағы суретті сайттың өзіне қосасың.' }
+    { id: 2, rn: 'II', title: 'Ғашықтарға арналған қол таңбасы', det: 'Кафеден кейін машинада екеуміздің қол таңбамызды жасаймыз. Мәңгі қалатын естелік.',
+      need: 'Қол таңбамыздың суретін сайттың өзіне қосасың.' }
   ];
   var photos = {};
   try { photos = JSON.parse(store(PH_KEY) || '{}') || {}; } catch (e) { photos = {}; }
@@ -1033,10 +1060,12 @@ button { font: inherit; }
   function complete(act, data, ctx, err, lab) {
     photos[act.id] = data;
     if (!savePhotos()) { delete photos[act.id]; err.textContent = 'Телефон жады толы. Кішірек сурет жүктеп көрші.'; lab.textContent = 'Сурет қосу'; return; }
+    try { window.dispatchEvent(new Event('dayphoto')); } catch (e) {}
     var a = ac(); if (a && a.state === 'running') { pluck(N.C5, a.currentTime, .1); pluck(N.E5, a.currentTime + .1, .1); pluck(N.G5, a.currentTime + .2, .1); }
-    if (act.id === 2 && ctx === 'plan') {
+    if (act.id === 1 && ctx === 'plan') {
       setStage('site');
       renderActs('planActs', 'plan');
+      renderActs('dayActs', 'site');
       $('planFoot').textContent = '';
       $('planFoot').appendChild(mk('p', 'plan-open', 'Ура, келдік! Сайт ашылып жатыр ♥'));
       spawn(80, 'heart'); fireworks();
@@ -1052,7 +1081,7 @@ button { font: inherit; }
     var arrived = store(ARR_KEY) === '1' || isDone(2);
     ACTS.forEach(function (act) {
       var done = isDone(act.id);
-      var cur = !done && (act.id === 1 || isDone(act.id - 1)) && !(act.id === 3 && ctx === 'plan');
+      var cur = !done && (act.id === 1 || isDone(act.id - 1)) && !(act.id === 2 && ctx === 'plan');
       var c = mk('article', 'dact' + (done ? ' done' : cur ? ' cur' : ''));
       var top = mk('div', 'dact-top');
       top.appendChild(mk('span', 'dact-rn', act.rn));
@@ -1062,19 +1091,17 @@ button { font: inherit; }
       c.appendChild(mk('p', 'dact-det', act.det));
       if (done && photos[act.id] !== 'none') { var im = mk('img', 'dact-img'); im.src = photos[act.id]; im.alt = act.title; c.appendChild(im); }
       if (!done && !replay) {
-        if (act.id === 1) { c.appendChild(mk('p', 'dact-need', act.need)); c.appendChild(photoPicker(act, ctx, 'Квесттен сурет қосу')); }
-        if (act.id === 2) {
+        if (act.id === 1) {
           c.appendChild(mk('p', 'dact-need', act.need));
-          if (!isDone(1)) c.appendChild(mk('p', 'dact-wait', 'Алдымен квестті белгіле'));
-          else if (!arrived) {
+          if (!arrived) {
             var go = mk('button', 'btn small', 'Келдік'); go.type = 'button';
             go.addEventListener('click', function () { store(ARR_KEY, '1'); renderActs(boxId, ctx); });
             c.appendChild(go);
-          } else c.appendChild(photoPicker(act, ctx, 'Тамақтан сурет қосу'));
+          } else c.appendChild(photoPicker(act, ctx, 'Кафеден сурет қосу'));
         }
-        if (act.id === 3) {
+        if (act.id === 2) {
           c.appendChild(mk('p', 'dact-need', act.need));
-          if (ctx === 'site' && isDone(2)) c.appendChild(photoPicker(act, ctx, 'Кинодан сурет қосу'));
+          if (ctx === 'site' && isDone(1)) c.appendChild(photoPicker(act, ctx, 'Қол таңбасының суретін қосу'));
         }
       }
       box.appendChild(c);
@@ -1087,7 +1114,7 @@ button { font: inherit; }
     var f = $('planFoot'); f.textContent = '';
     if (replay || stage === 'site') {
       var b = mk('button', 'btn', 'Сайтқа өту'); b.type = 'button'; b.addEventListener('click', enterSite); f.appendChild(b);
-    } else f.appendChild(mk('p', 'plan-note', 'Қалғаны кешкі тамақта ашылады. Күндіз көріскенше ♥'));
+    } else f.appendChild(mk('p', 'plan-note', 'Қалғаны кафеде ашылады. Күндіз көріскенше ♥'));
   }
 
   /* ================= REPLAY & RESET ================= */
@@ -1490,7 +1517,14 @@ button { font: inherit; }
 /* ================= OUR BOOK =================
    FIREBASE_CONFIG = null  → demo mode: entries live only in this browser.
    Paste your Firebase config object to make the book shared between the two of you. */
-var FIREBASE_CONFIG = null;
+var FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAaDaKvLDsLVredLKkco439JxACGWhU6XY",
+  authDomain: "as1kdiana.firebaseapp.com",
+  projectId: "as1kdiana",
+  storageBucket: "as1kdiana.firebasestorage.app",
+  messagingSenderId: "116522503698",
+  appId: "1:116522503698:web:0b5e5132160d6f46a952cb"
+};
 var ALLOWED_EMAILS = []; // shown in hints only; real protection is in the Firestore rules
 
 (function () {
@@ -1579,6 +1613,20 @@ var ALLOWED_EMAILS = []; // shown in hints only; real protection is in the Fires
   function firebaseBackend() {
     var V = '10.12.2', base = 'https://www.gstatic.com/firebasejs/' + V + '/';
     var db, auth, unsubs = [];
+    /* photos from 3 November (cafe, handprints) go into the shared chronicle once */
+    function syncDayPhotos() {
+      var ph = {}; try { ph = JSON.parse(localStorage.getItem('diana.dayPhotos') || '{}') || {}; } catch (e) {}
+      var names = { 1: 'Кафе', 2: 'Ғашықтарға арналған қол таңбасы' };
+      Object.keys(ph).forEach(function (id) {
+        var p = ph[id], key = 'diana.dayUp.' + id;
+        if (!p || p === 'none' || !names[id]) return;
+        try { if (localStorage.getItem(key)) return; localStorage.setItem(key, 'pending'); } catch (e) { return; }
+        db.collection('chronicle').add({ date: '2026-11-03', title: names[id], text: '3 қараша — біздің бірінші жылдығымыз', photo: p,
+          author: (me.displayName || me.email).split(' ')[0], createdAt: firebase.firestore.FieldValue.serverTimestamp() })
+          .then(function () { try { localStorage.setItem(key, '1'); } catch (e) {} })
+          .catch(function () { try { localStorage.removeItem(key); } catch (e) {} });
+      });
+    }
     function listen() {
       unsubs.forEach(function (u) { u(); }); unsubs = [];
       Object.keys(data).forEach(function (coll) {
@@ -1602,7 +1650,7 @@ var ALLOWED_EMAILS = []; // shown in hints only; real protection is in the Fires
             auth = firebase.auth(); db = firebase.firestore();
             auth.onAuthStateChanged(function (u) {
               me = u;
-              if (u) { authBar('in'); listen(); }
+              if (u) { authBar('in'); listen(); syncDayPhotos(); }
               else { unsubs.forEach(function (x) { x(); }); unsubs = []; Object.keys(data).forEach(function (k) { data[k] = []; }); authBar('out'); render(); }
             });
           })
@@ -1616,6 +1664,7 @@ var ALLOWED_EMAILS = []; // shown in hints only; real protection is in the Fires
         });
       },
       signOut: function () { auth.signOut(); },
+      sync: function () { if (me) syncDayPhotos(); },
       add: function (coll, obj) { obj.createdAt = firebase.firestore.FieldValue.serverTimestamp(); return db.collection(coll).add(obj); },
       update: function (coll, id, patch) { return db.collection(coll).doc(id).update(patch); },
       remove: function (coll, id) { return db.collection(coll).doc(id).delete(); }
@@ -1847,6 +1896,7 @@ var ALLOWED_EMAILS = []; // shown in hints only; real protection is in the Fires
     }).then(function () { $('sheetSave').disabled = false; $('sheetSave').textContent = 'Сақтау'; });
   });
 
+  window.addEventListener('dayphoto', function () { if (backend && backend.sync) backend.sync(); });
   /* ---------- start ---------- */
   if (FIREBASE_CONFIG) { backend = firebaseBackend(); }
   else { backend = localBackend(); authBar('demo'); }
