@@ -516,8 +516,6 @@ button { font: inherit; }
     </form>
     <div class="choices" id="choices" hidden></div>
     <p class="msg" id="lockMsg"></p>
-    <button class="demo-skip" id="qSkip" type="button">Пропустить вопросы (временно)</button>
-    <span class="demo-note">В примере: 03.11.2025 · Медеу · Есіміңіз кім болады? · кино · Қайтадан · театр · Махаббат қызық мол жылдар · любой</span>
   </div>
   <div class="titles" id="titles" hidden>
     <div class="t-photos" id="tPhotos" aria-hidden="true"></div>
@@ -546,7 +544,6 @@ button { font: inherit; }
       <div class="cd-box"><b id="cdS">00</b><span>секунд</span></div>
     </div>
     <p class="cd-note">Бетті жаппа. Сағат 12 болғанда осы жерде батырма шығады</p>
-    <button class="demo-skip" id="cdSkip" type="button">Пропустить ожидание (только в примере)</button>
   </div>
 </div>
 
@@ -558,7 +555,6 @@ button { font: inherit; }
     <p class="plan-sub">Бүкіл жоспар осында. Кафеге жеткенде сурет қосасың, сонда сайттың қалғаны ашылады.</p>
     <div class="dacts" id="planActs"></div>
     <div class="plan-foot" id="planFoot"></div>
-    <button class="demo-skip" id="planReset" type="button">Начать сначала (только в примере)</button>
   </div>
 </div>
 
@@ -627,10 +623,6 @@ button { font: inherit; }
     <p>Саған алғыс білдіремін, мен сені қатты жақсы көремін. 1 жыл бұрын бұндай деңгейге жететінімізді кім білген. Ендігі тілерім: әрқашан, не болса да бірге болып, ойлаған арман-мақсаттарымызға жетіп, тек күліп, бақытты, көңілді болып жүре берейік.</p>
     <p>Осы бір жыл үшін рахмет саған. Күлкің үшін, қолдағаның үшін, шыдағаның үшін. Жақсы күнде де, қиын күнде де қасымда болғаның үшін.</p>
     <p class="sign">Сенің махаббатың</p>
-  </div>
-  <div class="voice">
-    <button class="ghost" type="button" disabled>▶ Мені тыңдашы · 0:45</button>
-    <span class="demo-note">Здесь будет ваше голосовое</span>
   </div>
 </section>
 
@@ -746,8 +738,9 @@ button { font: inherit; }
   /* ================= AUDIO ================= */
   var AC = null;
   function ac() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} } return AC; }
+  function songPlaying() { return !!(song && !song.paused); }
   function bell(when) {
-    var a = ac(); if (!a) return;
+    var a = ac(); if (!a || songPlaying()) return;
     [1, 2.76, 5.4, 8.9].forEach(function (m, i) {
       var o = a.createOscillator(), g = a.createGain();
       o.type = 'sine'; o.frequency.value = 660 * m;
@@ -758,7 +751,7 @@ button { font: inherit; }
     });
   }
   function pluck(freq, when, vol) {
-    var a = ac(); if (!a) return;
+    var a = ac(); if (!a || songPlaying()) return;
     var o = a.createOscillator(), o2 = a.createOscillator(), g = a.createGain();
     o.type = 'sine'; o2.type = 'triangle'; o.frequency.value = freq; o2.frequency.value = freq * 2;
     g.gain.setValueAtTime(0.0001, when);
@@ -798,15 +791,15 @@ button { font: inherit; }
     try { song.muted = true; var p = song.play(); if (p && p.then) p.then(function () { song.pause(); song.currentTime = 0; song.muted = false; }).catch(function () { song.muted = false; }); else { song.pause(); song.muted = false; } } catch (e) { song.muted = false; }
   }
   function playSong() {
-    try { song.muted = false; song.volume = 0; var p = song.play(); if (p && p.catch) p.catch(function () {}); fadeSong(0.85, 2500); return true; } catch (e) { return false; }
+    try { song.muted = false; song.volume = 0; var p = song.play(); if (p && p.catch) p.catch(function () {}); fadeSong(0.5, 3000); return true; } catch (e) { return false; }
   }
   $('music').addEventListener('click', function () {
     musicOn = !musicOn;
     this.classList.toggle('on', musicOn);
     this.setAttribute('aria-label', musicOn ? 'Музыканы өшіру' : 'Біздің әнді қосу');
     $('musicTip').hidden = true;
-    if (songOk) { if (musicOn) playSong(); else fadeSong(0, 600, function () { song.pause(); }); return; }
-    if (musicOn) { var a = ac(); if (a && a.state === 'suspended') a.resume(); playLoop(); } else clearTimeout(musicTimer);
+    clearTimeout(musicTimer);
+    if (musicOn) playSong(); else fadeSong(0, 600, function () { song.pause(); });
   });
 
   /* ================= FLOW: countdown → curtain → questions → titles → day plan → site ================= */
@@ -844,7 +837,6 @@ button { font: inherit; }
     spawn(60, 'heart'); fireworks();
     setTimeout(function () { c.hidden = true; $('plaque').hidden = false; $('startBtn').focus(); }, reduce ? 400 : 3000);
   }
-  $('cdSkip').addEventListener('click', function () { clearInterval(cdTimer); midnight(); });
 
   /* ---- curtain ---- */
   $('startBtn').addEventListener('click', function () {
@@ -942,11 +934,6 @@ button { font: inherit; }
     b.classList.add('no'); $('lockMsg').textContent = wrongLines[tries % wrongLines.length]; tries++;
     shakeEl($('choices'));
   }
-  $('qSkip').addEventListener('click', function () {
-    if (qBusy) return; qBusy = true; qi = QUESTIONS.length;
-    Array.prototype.forEach.call($('qDots').children, function (d) { d.className = 'on'; });
-    playTitles();
-  });
   $('lockForm').addEventListener('submit', function (e) {
     e.preventDefault();
     if (qBusy || replay) return;
@@ -969,11 +956,9 @@ button { font: inherit; }
   var titlesDone = false, titleTimer = null;
   function startMusic() {
     if (musicOn) return;
-    if (songOk) { musicOn = true; $('music').classList.add('on'); $('music').setAttribute('aria-label', 'Музыканы өшіру'); playSong(); return; }
-    var a = ac(); if (!a) return;
-    if (a.state === 'suspended') a.resume();
+    clearTimeout(musicTimer);
     musicOn = true; $('music').classList.add('on'); $('music').setAttribute('aria-label', 'Музыканы өшіру');
-    playLoop();
+    playSong();
   }
   /* Our photos behind the titles: add 'data:image/jpeg;base64,...' strings here. */
   var TITLE_PHOTOS = [
@@ -1167,12 +1152,6 @@ button { font: inherit; }
   });
   $('resetBtn').addEventListener('click', function () { $('resetConfirm').hidden = false; $('resetBtn').hidden = true; $('resetYes').focus(); });
   $('resetNo').addEventListener('click', function () { $('resetConfirm').hidden = true; $('resetBtn').hidden = false; });
-  $('planReset').addEventListener('click', function () {
-    var b = this;
-    if (!b.classList.contains('confirm')) { b.classList.add('confirm'); b.textContent = 'Точно? Нажмите ещё раз, чтобы начать с таймера'; return; }
-    try { [STAGE_KEY, PH_KEY, ARR_KEY].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
-    location.reload();
-  });
   $('resetYes').addEventListener('click', function () {
     try { [STAGE_KEY, PH_KEY, ARR_KEY].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
     location.reload();
